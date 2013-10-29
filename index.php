@@ -2,10 +2,10 @@
     //
     // PHASE: BOOTSTRAP
     //
-    define('MOSMVC_INSTALL_PATH', dirname(__FILE__));
-    define('MOSMVC_SITE_PATH', MOSMVC_INSTALL_PATH . '/site');
+    define('MOSSMVC_INSTALL_PATH', dirname(__FILE__));
+    define('MOSSMVC_SITE_PATH', MOSSMVC_INSTALL_PATH . '/site');
 
-    require(MOSMVC_INSTALL_PATH.'/src/CMossmvc/bootstrap.php');
+    require(MOSSMVC_INSTALL_PATH.'/src/CMossmvc/bootstrap.php');
 
     $moss = CMossmvc::Instance();
     
