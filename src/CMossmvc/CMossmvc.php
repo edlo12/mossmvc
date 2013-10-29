@@ -37,6 +37,7 @@
         $controller = $this->request->controller;
         $method     = $this->request->method;
         $arguments  = $this->request->arguments;
+        
            // Is the controller enabled in config.php?
         $controllerExists    = isset($this->config['controllers'][$controller]);
         $controllerEnabled    = false;
@@ -73,10 +74,10 @@
         * Theme Engine Render, renders the views using the selected theme.
         */
       public function ThemeEngineRender() {
-        echo "<h1>I'm CLydia::ThemeEngineRender</h1><p>You are most welcome. Nothing to render at the moment</p>";
-        echo "<h2>The content of the config array:</h2><pre>", print_r($this->config, true) . "</pre>";
-        echo "<h2>The content of the data array:</h2><pre>", print_r($this->data, true) . "</pre>";
-        echo "<h2>The content of the request array:</h2><pre>", print_r($this->request, true) . "</pre>";
+        echo "<h1>I'm CMossmvc::ThemeEngineRender</h1><p>You are most welcome. Nothing to render at the moment</p>";
+        echo "<h2>The content of the config array:</h2><pre>", htmlentities(print_r($this->config, true)) . "</pre>";
+        echo "<h2>The content of the data array:</h2><pre>", htmlentities(print_r($this->data, true)) . "</pre>";
+        echo "<h2>The content of the request array:</h2><pre>", htmlentities(print_r($this->request, true)) . "</pre>";
       }
       
     }
