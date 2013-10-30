@@ -25,18 +25,18 @@ class CCDeveloper implements IController {
     $url = 'developer/links';
     $current      = $moss->request->CreateUrl($url);
 
-    $ly->request->cleanUrl = false;
-    $ly->request->querystringUrl = false;    
+    $moss->request->cleanUrl = false;
+    $moss->request->querystringUrl = false;    
     $default      = $moss->request->CreateUrl($url);
     
-    $ly->request->cleanUrl = true;
+    $moss->request->cleanUrl = true;
     $clean        = $moss->request->CreateUrl($url);    
     
-    $ly->request->cleanUrl = false;
-    $ly->request->querystringUrl = true;    
+    $moss->request->cleanUrl = false;
+    $moss->request->querystringUrl = true;    
     $querystring  = $moss->request->CreateUrl($url);
     
-    $ly->data['main'] .= <<<EOD
+    $moss->data['main'] .= <<<EOD
 <h2>CRequest::CreateUrl()</h2>
 <p>Here is a list of urls created using above method with various settings. All links should lead to
 this same page.</p>
