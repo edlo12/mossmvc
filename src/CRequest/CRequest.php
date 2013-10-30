@@ -7,6 +7,28 @@
     class CRequest {
 
       /**
+   * Member variables
+   */
+  public $cleanUrl;
+  public $querystringUrl;
+  
+  /**
+   * Constructor
+   *
+   * Decide which type of url should be generated as outgoing links.
+   * default      = 0      => index.php/controller/method/arg1/arg2/arg3
+   * clean        = 1      => controller/method/arg1/arg2/arg3
+   * querystring  = 2      => index.php?q=controller/method/arg1/arg2/arg3
+   *
+   * @param boolean $urlType integer 
+   */
+  public function __construct($urlType=0) {
+    $this->cleanUrl       = $urlType= 1 ? true : false;
+    $this->querystringUrl = $urlType= 2 ? true : false;
+  }
+
+
+      /**
        * Init the object by parsing the current url request.
        *
        * Parse the current url request and divide it in controller, method and arguments.
