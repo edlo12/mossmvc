@@ -12,6 +12,7 @@
        public function Index() {   
           global $moss;
           $moss->data['title'] = "The Index Controller";
+          $moss->data['main'] = "<h1>The Index Controller</h1>";
        }
 
     } 

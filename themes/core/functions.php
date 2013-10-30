@@ -4,7 +4,7 @@
     */
     $moss->data['header'] = '<h1>Header: Mossmvc</h1>';
     $moss->data['main']   = '<p>Main: Now with a theme engine, Not much more to report for now.</p>';
-    $moss->data['footer'] = '<p>Footer: &copy; Mossmvc by Edith Lopez, mostvarar Lydia by Mikael Roos (mos@dbwebb.se)</p>';
+    $moss->data['footer'] = '<p>Footer: &copy; Mossmvc by Edith Lopez, based on Lydia by Mikael Roos (mos@dbwebb.se)</p>';
 
 
     /**

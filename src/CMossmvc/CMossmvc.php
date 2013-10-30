@@ -32,7 +32,7 @@
         */
       public function FrontControllerRoute() {
         // Take current url and divide it in controller, method and parameters
-        $this->request = new CRequest();
+        $this->request = new CRequest($this->config['url_type']);
         $this->request->Init($this->config['base_url']);
         
         $controller = $this->request->controller;
@@ -58,18 +58,22 @@
             if($rc->hasMethod($method)) {
               $controllerObj = $rc->newInstance();
               $methodObj = $rc->getMethod($method);
+             if($methodObj->isPublic()) {
               $methodObj->invokeArgs($controllerObj, $arguments);
-            } else {
-              die("404. " . get_class() . ' error: Controller does not contain method.');
-            }
           } else {
-            die('404. ' . get_class() . ' error: Controller does not implement interface IController.');
+            die("404. " . get_class() . ' error: Controller method not public.');          
           }
-        }else {
-          die('404. Page is not found.');
+        } else {
+          die("404. " . get_class() . ' error: Controller does not contain method.');
         }
+      } else {
+        die('404. ' . get_class() . ' error: Controller does not implement interface IController.');
       }
-      
+    } 
+    else { 
+      die('404. Page is not found.');
+    }
+  }      
        /**
         * Theme Engine Render, renders the views using the selected theme.
         */
