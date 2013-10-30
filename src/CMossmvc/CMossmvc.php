@@ -64,8 +64,7 @@
           } else {
             die('404. ' . get_class() . ' error: Controller does not implement interface IController.');
           }
-        }
-        else {
+        }else {
           die('404. Page is not found.');
         }
       }
@@ -73,11 +72,28 @@
        /**
         * Theme Engine Render, renders the views using the selected theme.
         */
+       /**
+        * ThemeEngineRender, renders the reply of the request.
+        */
       public function ThemeEngineRender() {
-        echo "<h1>I'm CMossmvc::ThemeEngineRender</h1><p>You are most welcome. Nothing to render at the moment</p>";
-        echo "<h2>The content of the config array:</h2><pre>", htmlentities(print_r($this->config, true)) . "</pre>";
-        echo "<h2>The content of the data array:</h2><pre>", htmlentities(print_r($this->data, true)) . "</pre>";
-        echo "<h2>The content of the request array:</h2><pre>", htmlentities(print_r($this->request, true)) . "</pre>";
-      }
+        // Get the paths and settings for the theme
+        $themeName    = $this->config['theme']['name'];
+        $themePath    = MOSSMVC_INSTALL_PATH . "/themes/{$themeName}";
+        $themeUrl      = "themes/{$themeName}";
+       
+        // Add stylesheet path to the $moss->data array
+        $this->data['stylesheet'] = "{$themeUrl}/style.css";
+
+        // Include the global functions.php and the functions.php that are part of the theme
+        $moss = &$this;
+        $functionsPath = "{$themePath}/functions.php";
+        if(is_file($functionsPath)) {
+          include $functionsPath;
+        }
+
+        // Extract $moss->data to own variables and handover to the template file
+        extract($this->data);     
+        include("{$themePath}/default.tpl.php");
+      }      
       
     }

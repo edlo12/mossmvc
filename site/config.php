@@ -38,8 +38,15 @@
     */
     $moss->config['character_encoding'] = 'UTF-8';
 
-    /*
+   /*
     * Define language
     */
     $moss->config['language'] = 'en';
     
+   /** 
+    * Settings for the theme.
+    */
+    $moss->config['theme'] = array(
+      // The name of the theme in the theme directory
+      'name'    => 'core',
+    );
