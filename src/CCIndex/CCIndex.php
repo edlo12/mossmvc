@@ -4,7 +4,7 @@
     *
     * @package MossmvcCore
     */
-    class CCIndex implements IController {
+class CCIndex implements IController {
 
        /**
         * Implementing interface IController. All controllers must have an index action.
@@ -37,4 +37,3 @@ EOD;
   }
   
 } 
-    } 
