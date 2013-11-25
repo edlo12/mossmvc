@@ -41,6 +41,7 @@ class CCGuestbook extends CObject implements IController {
             <p>
               <input type='submit' name='doAdd' value='Add message' />
               <input type='submit' name='doClear' value='Clear all messages' />
+              <input type='submit' name='doCreate' value='Create database' />
             </p>
           </form>
         ";
