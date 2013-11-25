@@ -24,7 +24,7 @@
 function get_debug() {
   $moss = CMossmvc::Instance();
   $html = null;
-  if(isset($moss->config['debug'][display-mossmvc])){
+  if(isset($moss->config['debug']['display-mossmvc'])){
     $html = "<hr><h3>Debuginformation</h3><p>The content of CMossmvc:</p><pre>" . htmlent(print_r($moss, true)) . "</pre>";
   }
 //  $html = "<h2>Debuginformation</h2><hr><p>The content of the config array:</p><pre>" . htmlentities(print_r($moss->config, true)) . "</pre>";
