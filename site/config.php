@@ -66,5 +66,10 @@
     * querystring  = 2      => index.php?q=controller/method/arg1/arg2/arg3
     */
     $moss->config['url_type'] = 1;
-
+    
+    
+    /**
+    * Set database(s).
+    */
+    $moss->config['database'][0]['dsn'] = 'sqlite:' . MOSSMVC_SITE_PATH . '/data/.ht.sqlite';
     
