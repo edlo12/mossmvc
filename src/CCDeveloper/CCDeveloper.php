@@ -4,8 +4,14 @@
  * 
  * @package MossmvcCore
  */
-class CCDeveloper implements IController {
-
+class CCDeveloper extends CObject implements IController {
+  /**
+   * Constructor
+   */
+   public function __construct() {
+       parent::__construct();
+   }
+   
   /**
     * Implementing interface IController. All controllers must have an index action.
    */
@@ -20,23 +26,23 @@ class CCDeveloper implements IController {
   public function Links() {  
     $this->Menu();
     
-    $moss = CMossmvc::Instance();
+//    $moss = CMossmvc::Instance();
     
     $url = 'developer/links';
-    $current      = $moss->request->CreateUrl($url);
+    $current      = $this->request->CreateUrl($url);
 
-    $moss->request->cleanUrl = false;
-    $moss->request->querystringUrl = false;    
-    $default      = $moss->request->CreateUrl($url);
+    $this->request->cleanUrl = false;
+    $this->request->querystringUrl = false;    
+    $default      = $this>request->CreateUrl($url);
     
-    $moss->request->cleanUrl = true;
-    $clean        = $moss->request->CreateUrl($url);    
+    $this->request->cleanUrl = true;
+    $clean        = $this->request->CreateUrl($url);    
     
-    $moss->request->cleanUrl = false;
-    $moss->request->querystringUrl = true;    
-    $querystring  = $moss->request->CreateUrl($url);
+    $this->request->cleanUrl = false;
+    $this->request->querystringUrl = true;    
+    $querystring  = $this->request->CreateUrl($url);
     
-    $moss->data['main'] .= <<<EOD
+    $this->data['main'] .= <<<EOD
 <h2>CRequest::CreateUrl()</h2>
 <p>Here is a list of urls created using above method with various settings. All links should lead to
 this same page.</p>
@@ -50,21 +56,35 @@ this same page.</p>
 EOD;
   }
 
-
+    /**
+        * Display all items of the CObject.
+        */
+       public function DisplayObject() {   
+          $this->Menu();
+          
+          $this->data['main'] .= <<<EOD
+<h2>Dumping content of CDeveloper</h2>
+<p>Here is the content of the controller, including properties from CObject which holds access to common resources in CMossmvc.</p>
+EOD;
+          $this->data['main'] .= '<pre>' . htmlentities(print_r($this, true)) . '</pre>';
+       }
+       
+       
+       
   /**
     * Create a method that shows the menu, same for all methods
    */
   private function Menu() {  
-    $moss = CMossmvc::Instance();
-    $menu = array('developer', 'developer/index', 'developer/links');
+//    $moss = CMossmvc::Instance();
+    $menu = array('developer', 'developer/index', 'developer/links', 'developer/display-object');
     
     $html = null;
     foreach($menu as $val) {
-      $html .= "<li><a href='" . $moss->request->CreateUrl($val) . "'>$val</a>";  
+      $html .= "<li><a href='" . $this->request->CreateUrl($val) . "'>$val</a>";  
     }
     
-    $moss->data['title'] = "The Developer Controller";
-    $moss->data['main'] = <<<EOD
+    $this->data['title'] = "The Developer Controller";
+    $this->data['main'] = <<<EOD
 <h1>The Developer Controller</h1>
 <p>This is what you can do for now:</p>
 <ul>
