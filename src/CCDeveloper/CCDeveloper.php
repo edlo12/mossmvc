@@ -33,7 +33,7 @@ class CCDeveloper extends CObject implements IController {
 
     $this->request->cleanUrl = false;
     $this->request->querystringUrl = false;    
-    $default      = $this>request->CreateUrl($url);
+    $default      = $this->request->CreateUrl($url);
     
     $this->request->cleanUrl = true;
     $clean        = $this->request->CreateUrl($url);    
