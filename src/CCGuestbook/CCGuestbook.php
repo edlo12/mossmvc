@@ -8,17 +8,8 @@ class CCGuestbook extends CObject implements IController {
 
       private $pageTitle = 'Mossmvc Guestbook Example';
       private $pageHeader = '<h1>Guestbook Example</h1><p>Showing off how to implement a guestbook in Mossmvc.</p>';
-      private $pageForm = "
-        <form>
-          <p>
-            <label>Comment: <br/>
-            <textarea name='newEntry'></textarea></label>
-          </p>
-          <p>
-            <input type='submit' name='doIt' value='Add comment' />
-          </p>
-        </form>
-      ";
+      private $pageMessages = '<h2>Current messages</h2>';
+
      
 
       /**
