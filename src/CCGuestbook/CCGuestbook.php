@@ -31,7 +31,7 @@ class CCGuestbook extends CObject implements IController {
        * Implementing interface IController. All controllers must have an index action.
        */
       public function Index() {   
-        $formAction = $this->request->CreateUrl('guestbook/add');
+        $formAction = $this->request->CreateUrl('guestbook/handler');
         $this->pageForm = "
           <form action='{$formAction}' method='post'>
             <p>
