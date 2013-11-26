@@ -4,7 +4,7 @@
     */
     $moss->data['header'] = '<h1>Mossmvc</h1>';
     $moss->data['favicon'] = theme_url('favicon.ico');
-    $mosss->data['slogan'] = 'A PHP-based MVC-inspired CMF';
+    $moss->data['slogan'] = 'A PHP-based MVC-inspired CMF';
     $moss->data['logo'] = theme_url('logo.png');
     $moss->data['logo:width'] = 80;
     $moss->data['logo:height'] = 66; 
