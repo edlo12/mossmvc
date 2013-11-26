@@ -43,7 +43,7 @@
         $scriptPart = $scriptName = $_SERVER['SCRIPT_NAME'];   
 
         // Check if url is in format controller/method/arg1/arg2/arg3
-        if(substr_compare($requestUri, $scriptName, 0, strlen($scriptName))) {
+        if(substr_compare($requestUri, $scriptName, 0)) {
           $scriptPart = dirname($scriptName);
         }
        

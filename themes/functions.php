@@ -32,3 +32,11 @@ function get_debug() {
 //  $html .= "<hr><p>The content of the request array:</p><pre>" . htmlentities(print_r($moss->request, true)) . "</pre>";
   return $html;
 }
+
+/**
+ * Prepend the theme_url, which is the url to the current theme directory.
+ */
+function theme_url($url) {
+  $moss = CMossmvc::Instance();
+  return "{$moss->request->base_url}themes/{$moss->config['theme']['name']}/{$url}";
+}

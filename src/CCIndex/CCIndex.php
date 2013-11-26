@@ -34,8 +34,8 @@ class CCIndex extends CObject implements IController {
                  $html .= "<li><a href='" . $this->request->CreateUrl($val) . "'>$val</a>";
                 }
                 
-                $moss->data['title'] = "The Index Controller";
-                $moss->data['main'] = <<<EOD
+                $this->data['title'] = "The Index Controller";
+                $this->data['main'] = <<<EOD
 <h1>The Index Controller</h1>
 <p>This is what you can do for now:</p>
 <ul>
