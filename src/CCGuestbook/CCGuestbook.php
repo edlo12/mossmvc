@@ -48,10 +48,14 @@ class CCGuestbook extends CObject implements IController {
         $this->data['title'] = $this->pageTitle;
         $this->data['main']  = $this->pageHeader . $this->pageForm . $this->pageMessages;
        
-        if(isset($_SESSION['guestbook'])) {
-          foreach($_SESSION['guestbook'] as $val) {
-            $this->data['main'] .= "<div style='background-color:#f6f6f6;border:1px solid #ccc;margin-bottom:1em;padding:1em;'><p>At: {$val['time']}</p><p>{$val['entry']}</p></div>\n";
-          }
+    //    if(isset($_SESSION['guestbook'])) {
+    //      foreach($_SESSION['guestbook'] as $val) {
+    //        $this->data['main'] .= "<div style='background-color:#f6f6f6;border:1px solid #ccc;margin-bottom:1em;padding:1em;'><p>At: {$val['time']}</p><p>{$val['entry']}</p></div>\n";
+    //      }
+    //    }
+         $entries = $this->ReadAllFromDatabase();
+        foreach($entries as $val) {
+          $this->data['main'] .= "<div style='background-color:#f6f6f6;border:1px solid #ccc;margin-bottom:1em;padding:1em;'><p>At: {$val['created']}</p><p>" . htmlent($val['entry']) . "</p></div>\n";
         }
       }
       /**
