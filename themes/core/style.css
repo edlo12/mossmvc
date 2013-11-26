@@ -20,13 +20,16 @@ body{font-family:tahoma,sans-serif;
      }
     
 #footer {margin-top:10px;
-	background:#FFFF99;
+	background:#FFF999;
+        background:hsla(0,0%,100%,0.7);padding:10px;margin:10px auto;
+        border:1px solid #6F4234;
+       -webkit-border-radius: 10px;
+       -moz-border-radius: 10px;
+        border-radius: 10px;
         text-align: center;
 	color:#6F4234;
         font-size: small;
-     font-size: small;
 }
-article{border:1px dotted gray;padding:0 1em; }
 #main {
       margin-top: 30px;
       margin-bottom: 30px;
@@ -34,7 +37,8 @@ article{border:1px dotted gray;padding:0 1em; }
       border:1px solid #6F4234;
      -webkit-border-radius: 10px;
      -moz-border-radius: 10px;
-      border-radius: 10px;}
+      border-radius: 10px;
+      }
 h1 { color:#6F4234;}
 a {text-decoration: none}
 input.text,
