@@ -6,8 +6,8 @@
     $moss->data['favicon'] = theme_url('favicon.ico');
     $moss->data['slogan'] = 'A PHP-based MVC-inspired CMF';
     $moss->data['logo'] = theme_url('logo.png');
-    $moss->data['logo:width'] = 80;
-    $moss->data['logo:height'] = 66; 
+    $moss->data['logo_width'] = 80;
+    $moss->data['logo_height'] = 66; 
     $moss->data['footer'] = <<<EOD
 <p>Footer: &copy; Mossmvc by Edith Lopez, based on Lydia by Mikael Roos (mos@dbwebb.se)</p>
 <p>Tools: 
