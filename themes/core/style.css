@@ -11,15 +11,15 @@ body{font-family:tahoma,sans-serif;
      background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #6F4234), color-stop(0.10, #AF6E56), color-stop(0.80, #F4D7D7)); 
   } 
 
-#header,
-#main,
-#footer {
+#wrap-header,
+#wrap-main,
+#wrap-footer {
        margin:0 auto;
        width:970px;
        padding: 1em;
      }
     
-#footer {margin-top:10px;
+#wrap-footer {margin-top:10px;
 	background:#FFF999;
         background:hsla(0,0%,100%,0.7);padding:10px;margin:10px auto;
         border:1px solid #6F4234;
@@ -30,7 +30,7 @@ body{font-family:tahoma,sans-serif;
 	color:#6F4234;
         font-size: small;
 }
-#main {
+#wrap-main {
       margin-top: 30px;
       margin-bottom: 30px;
       background:hsla(0,0%,100%,0.7);padding:10px;margin:10px auto;
@@ -39,8 +39,50 @@ body{font-family:tahoma,sans-serif;
      -moz-border-radius: 10px;
       border-radius: 10px;
       }
+#main { padding: 20px;
+}
+      
+#banner {
+   display: table;
+   margin-bottom: 10px;
+   }
+   
+.site-logo,
+.site-title,
+.site-slogan {
+   display: table-cell;
+   width: inherit;
+   vertical-align: middle;
+   text-align: left;
+}
+
+.site-logo {}
+.site-title,
+.site-slogan {
+   padding-left: 20px;
+   text-shadow: #333 2px 2px 2px;
+}
+.site-title {
+   font-size: 4em;
+   font-weight: bold;
+}
+.site-slogan {
+   font-size: 1.5em;
+}
+
 h1 { color:#6F4234;}
+h2 { border-bottom: 1px solid #ccc;
+     padding-bottom: 4px;
+}
 a {text-decoration: none}
+a:link {}
+a:visited {}
+a:hover,
+a:focus {
+   color: #5C0A0A;
+}
+a:active {}
+
 input.text,
 input.title   { width: 300px; padding:5px; }
 input.title   { font-size:1.5em; }

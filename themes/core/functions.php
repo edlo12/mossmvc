@@ -2,7 +2,12 @@
     /**
     * Helpers for the template file.
     */
-    $moss->data['header'] = '<h1>Header: Mossmvc</h1>';
+    $moss->data['header'] = '<h1>Mossmvc</h1>';
+    $moss->data['favicon'] = theme_url('favicon.ico');
+    $mosss->data['slogan'] = 'A PHP-based MVC-inspired CMF';
+    $moss->data['logo'] = theme_url('logo.png');
+    $moss->data['logo:width'] = 80;
+    $moss->data['logo:height'] = 66; 
     $moss->data['footer'] = <<<EOD
 <p>Footer: &copy; Mossmvc by Edith Lopez, based on Lydia by Mikael Roos (mos@dbwebb.se)</p>
 <p>Tools: 

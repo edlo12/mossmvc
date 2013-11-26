@@ -4,14 +4,22 @@
     *
     * @package MossmvcCore
     */
-class CCIndex implements IController {
+class CCIndex extends CObject implements IController {
 
-       /**
-        * Implementing interface IController. All controllers must have an index action.
-        */
-       public function Index() {   
-            $this->Menu();
-        }
+   /**
+    * Constructor
+    *
+    **/
+     public function __construct() {
+       parent::__construct();
+     }
+   
+   /**
+    * Implementing interface IController. All controllers must have an index action.
+    */
+      public function Index() {   
+         $this->Menu();
+      }
 
 
         /**
@@ -23,7 +31,7 @@ class CCIndex implements IController {
                 
                 $html = null;
                 foreach($menu as $val) {
-                 $html .= "<li><a href='" . $moss->request->CreateUrl($val) . "'>$val</a>";
+                 $html .= "<li><a href='" . $this->request->CreateUrl($val) . "'>$val</a>";
                 }
                 
                 $moss->data['title'] = "The Index Controller";
