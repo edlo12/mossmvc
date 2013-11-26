@@ -1,14 +1,15 @@
 <?php
     /**
-    * Holding a instance of CLydia to enable use of $this in subclasses.
+    * Holding a instance of CMossmvc to enable use of $this in subclasses.
     *
-    * @package LydiaCore
+    * @package MossmvcCore
     */
-    class CObject {
+class CObject {
 
        public $config;
        public $request;
        public $data;
+       public $db;
 
        /**
         * Constructor
@@ -18,6 +19,7 @@
         $this->config   = &$moss->config;
         $this->request  = &$moss->request;
         $this->data     = &$moss->data;
+        $this->db       = &$moss->db;
       }
-
-    }
+}
+    

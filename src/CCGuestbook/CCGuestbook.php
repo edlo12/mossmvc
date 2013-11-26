@@ -88,10 +88,19 @@ class CCGuestbook extends CObject implements IController {
         }           
         header('Location: ' . $this->request->CreateUrl('guestbook'));
       }
-      
       /**
        * Save a new entry to database.
        */
+      private function CreateTableInDatabase() {
+        try {
+          $this->db->ExecuteQuery("CREATE TABLE IF NOT EXISTS Guestbook (id INTEGER PRIMARY KEY, entry TEXT, created DATETIME default (datetime('now')));");
+        } catch(Exception$e) {
+          die("$e<br/>Failed to open database: " . $this->config['database'][0]['dsn']);
+        }
+      }      
+      /**
+       * Save a new entry to database.
+       
       private function CreateTableInDatabase() {
         try {
           $db = new PDO($this->config['database'][0]['dsn']);
@@ -103,10 +112,19 @@ class CCGuestbook extends CObject implements IController {
           die("Failed to open database: " . $this->config['database'][0]['dsn'] . "</br>" . $e);
         }
       }
-      
+      */
       /**
        * Save a new entry to database.
        */
+      private function SaveNewToDatabase($entry) {
+        $this->db->ExecuteQuery('INSERT INTO Guestbook (entry) VALUES (?);', array($entry));
+        if($this->db->rowCount() != 1) {
+          echo 'Failed to insert new guestbook item into database.';
+        }
+      }
+      /**
+       * Save a new entry to database.
+       
       private function SaveNewToDatabase($entry) {
         $db = new PDO($this->config['database'][0]['dsn']);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
@@ -116,22 +134,38 @@ class CCGuestbook extends CObject implements IController {
         if($stmt->rowCount() != 1) {
           die('Failed to insert new guestbook item into database.');
         }
-      }
-
+      }*/
       /**
        * Delete all entries from the database.
        */
+      private function DeleteAllFromDatabase() {
+        $this->db->ExecuteQuery('DELETE FROM Guestbook;');
+      }
+      /**
+       * Delete all entries from the database.
+       
       private function DeleteAllFromDatabase() {
         $db = new PDO($this->config['database'][0]['dsn']);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
         $stmt = $db->prepare('DELETE FROM Guestbook;');
         $stmt->execute();
-      }
+      }*/
       
       /**
        * Read all entries from the database.
        */
+      private function ReadAllFromDatabase() {
+        try {
+          $this->db->SetAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM Guestbook ORDER BY id DESC;');
+        } catch(Exception $e) {
+          return array();   
+        }
+      }
+      /**
+       * Read all entries from the database.
+       
       private function ReadAllFromDatabase() {
         try {
           $db = new PDO($this->config['database'][0]['dsn']);
@@ -144,5 +178,5 @@ class CCGuestbook extends CObject implements IController {
         } catch(Exception $e) {
           return array();
         }
-      }
+      }*/
 } 

@@ -2,7 +2,8 @@
     /**
     * Helpers for the template file.
     */
-    $moss->data['header'] = '<h1>Mossmvc</h1>';
+    $moss->data['header'] = '<h1>Mossmvc</h1>
+    ';
     $moss->data['favicon'] = theme_url('favicon.ico');
     $moss->data['slogan'] = 'A PHP-based MVC-inspired CMF';
     $moss->data['logo'] = theme_url('logo.png');
