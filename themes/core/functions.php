@@ -4,7 +4,7 @@
     */
     $moss->data['header'] = '<h1>Header: Mossmvc</h1>';
     $moss->data['footer'] = <<<EOD
-<p>Footer: &copy; Mossmvc by Edith Lopez, based on Lydia by Mikael Roos (mos@dbwebb.se)</p>';
+<p>Footer: &copy; Mossmvc by Edith Lopez, based on Lydia by Mikael Roos (mos@dbwebb.se)</p>
 <p>Tools: 
 <a href="http://validator.w3.org/check/referer">html5</a>
 <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">css3</a>

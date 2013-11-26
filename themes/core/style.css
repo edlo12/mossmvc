@@ -6,16 +6,40 @@
     * Structure
     */
     html{}
-    body{
-       background-color:#eee;
-       font: 1em Verdana, Arial, Helvetica, sans-serif;
-    }
+body{font-family:tahoma,sans-serif;
+     background-color:#E5E5B2;
+     background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #6F4234), color-stop(0.10, #AF6E56), color-stop(0.80, #F4D7D7)); 
+  } 
 
-    #header,
-    #main,
-    #footer {
+#header,
+#main,
+#footer {
        margin:0 auto;
        width:970px;
-       background-color:#fff;
        padding: 1em;
-    }
+     }
+    
+#footer {margin-top:10px;
+	background:#FFFF99;
+        text-align: center;
+	color:#6F4234;
+        font-size: small;
+     font-size: small;
+}
+article{border:1px dotted gray;padding:0 1em; }
+#main {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      background:hsla(0,0%,100%,0.7);padding:10px;margin:10px auto;
+      border:1px solid #6F4234;
+     -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+      border-radius: 10px;}
+h1 { color:#6F4234;}
+a {text-decoration: none}
+input.text,
+input.title   { width: 300px; padding:5px; }
+input.title   { font-size:1.5em; }
+textarea      { padding:15px; }
+form.inline { line-height:3; }
+form.inline p { margin-bottom:5px; }
