@@ -164,7 +164,7 @@ class CCGuestbook extends CObject implements IController, IHasSQL {
       private function ReadAllFromDatabase() {
         try {
           $this->db->SetAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM Guestbook ORDER BY id DESC;');
+          return $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('select * from guestbook'));
         } catch(Exception $e) {
           return array();   
         }
