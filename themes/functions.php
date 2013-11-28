@@ -33,7 +33,7 @@
       if(isset($moss->config['debug']['db-queries']) && $moss->config['debug']['db-queries'] && isset($moss->db)) {
         $html .= "<p>Database made the following queries.</p><pre>" . implode('<br/><br/>', $moss->db->GetQueries()) . "</pre>";
       }   
-      if(isset($moss->config['debug']['mossmvc']) && $ly->config['debug']['mossmvc']) {
+      if(isset($moss->config['debug']['mossmvc']) && $moss->config['debug']['mossmvc']) {
         $html .= "<hr><h3>Debuginformation</h3><p>The content of CMossmvc:</p><pre>" . htmlent(print_r($moss, true)) . "</pre>";
       }   
       return $html;
