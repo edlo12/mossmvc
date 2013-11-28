@@ -32,7 +32,7 @@
   
          // Create a database object.
           if(isset($this->config['database'][0]['dsn'])) {
-            $this->db = new CMDatabase($this->config['database'][0]['dsn']);
+            $this->db = new CDatabase($this->config['database'][0]['dsn']);
       
         }
        }
