@@ -18,9 +18,6 @@
       return CMossmvc::Instance()->request->current_url;
     }
     
-/**
- * Print debuginformation from the framework.
- */
     /**
     * Print debuginformation from the framework.
     */
@@ -39,17 +36,7 @@
       return $html;
     }
     
-//  function get_debug() {
-//  $moss = CMossmvc::Instance();
-//  $html = null;
-//  if(isset($moss->config['debug']['display-mossmvc'])){
-//    $html = "<hr><h3>Debuginformation</h3><p>The content of CMossmvc:</p><pre>" . htmlent(print_r($moss, true)) . "</pre>";
-//  }
-//  $html = "<h2>Debuginformation</h2><hr><p>The content of the config array:</p><pre>" . htmlentities(print_r($moss->config, true)) . "</pre>";
-//  $html .= "<hr><p>The content of the data array:</p><pre>" . htmlentities(print_r($moss->data, true)) . "</pre>";
-//  $html .= "<hr><p>The content of the request array:</p><pre>" . htmlentities(print_r($moss->request, true)) . "</pre>";
-//  return $html;
-//}
+
 
 /**
  * Prepend the theme_url, which is the url to the current theme directory.
