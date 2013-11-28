@@ -7,24 +7,17 @@
     class CMossmvc implements ISingleton {
 
        private static $instance = null;
+       public $config = null;
+       public $request = null;
+       public $data = null;
+       public $db = null;
        
        /**
         * Constructor
         */
        protected function __construct() {
 
-          // Some code left out by purpose
-          
-          // Create a database object.
-          if(isset($this->config['database'][0]['dsn'])) {
-            $this->db = new CMDatabase($this->config['database'][0]['dsn']);
-         }
-      }
-       /**
-        * Constructor
-        
-       protected function __construct() {
-          // include the site specific config.php and create a ref to $moss to be used by config.php
+      // include the site specific config.php and create a ref to $moss to be used by config.php
           $moss = &$this;
           require(MOSSMVC_SITE_PATH.'/config.php');
           
@@ -36,8 +29,13 @@
          // Set default date/time-zone
 
          date_default_timezone_set($this->config['timezone']);
-
-       }*/
+  
+         // Create a database object.
+          if(isset($this->config['database'][0]['dsn'])) {
+            $this->db = new CMDatabase($this->config['database'][0]['dsn']);
+      
+        }
+       }
  
        /**
         * Singleton pattern. Get the instance of the latest created object or create a new one.
