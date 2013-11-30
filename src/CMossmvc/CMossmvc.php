@@ -36,7 +36,7 @@
           }
          
          // Create a container for all views and theme data
-         $this->views = new CViewContainer();
+            $this->views = new CViewContainer();
       }
  
        /**

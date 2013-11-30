@@ -64,7 +64,7 @@ class CCGuestbook extends CObject implements IController, IHasSQL {
       private function SaveNewToDatabase($entry) {
         $this->db->ExecuteQuery(self::SQL('insert into guestbook'), array($entry));
         if($this->db->rowCount() != 1) {
-          echo 'Failed to insert new guestbook item into database.';
+           die('Failed to insert new guestbook item into database.');
         }
       }
       
