@@ -19,14 +19,15 @@
   </div>
 </div>
 <div id='wrap-main'>
-<div id="main" role="main">
-<?=$main?>
-</div>
+  <div id='main' role='main'>
+    <?=@$main?>
+    <?=render_views()?>
+  </div>
 </div>
 <div id='wrap-footer'>
-<div id="footer">
-<?=$footer?>
-</div>
+  <div id="footer">
+    <?=$footer?>
+  </div>
 <?=get_debug()?>
 </div>
 </body>

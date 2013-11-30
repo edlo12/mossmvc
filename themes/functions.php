@@ -38,10 +38,17 @@
     
 
 
-/**
- * Prepend the theme_url, which is the url to the current theme directory.
- */
-function theme_url($url) {
-  $moss = CMossmvc::Instance();
-  return "{$moss->request->base_url}themes/{$moss->config['theme']['name']}/{$url}";
-}
+    /**
+     * Prepend the theme_url, which is the url to the current theme directory.
+     */
+    function theme_url($url) {
+      $moss = CMossmvc::Instance();
+      return "{$moss->request->base_url}themes/{$moss->config['theme']['name']}/{$url}";
+    }
+    
+   /**
+    * Render all views.
+    */
+    function render_views() {
+      return CMossmvc::Instance()->views->Render();
+    }

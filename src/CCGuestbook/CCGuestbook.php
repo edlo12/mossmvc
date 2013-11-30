@@ -24,17 +24,14 @@ class CCGuestbook extends CObject implements IController, IHasSQL {
        * Implementing interface IController. All controllers must have an index action.
        */
       public function Index() {
-            $this->data['title'] = $this->pageTitle;
-
-    // Include the file and store it in a string using output buffering
-    $entries = $this->ReadAllFromDatabase();
-    $formAction = $this->request->CreateUrl('guestbook/handler');
-    ob_start();
-    include __DIR__ . '/index.tpl.php';
-    $this->data['main'] = ob_get_clean();
-    
+        $this->views->SetTitle($this->pageTitle);
+        $this->views->AddInclude(__DIR__ . '/index.tpl.php', array(
+          'entries'=>$this->ReadAllFromDatabase(),
+          'formAction'=>$this->request->CreateUrl('guestbook/handler')
+        ));
       }
-    
+      
+      
       /**
        * Handle posts from the form and take appropriate action.
        */

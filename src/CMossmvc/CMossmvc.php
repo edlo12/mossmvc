@@ -33,9 +33,11 @@
          // Create a database object.
           if(isset($this->config['database'][0]['dsn'])) {
             $this->db = new CDatabase($this->config['database'][0]['dsn']);
-      
-        }
-       }
+          }
+         
+         // Create a container for all views and theme data
+         $this->views = new CViewContainer();
+      }
  
        /**
         * Singleton pattern. Get the instance of the latest created object or create a new one.
@@ -119,9 +121,10 @@
           include $functionsPath;
         }
 
-        // Extract $moss->data to own variables and handover to the template file
+       // Extract $moss->data and $moss->view->data to own variables and handover to the template file
         extract($this->data);     
+        extract($this->views->GetData());     
         include("{$themePath}/default.tpl.php");
       }      
       
-    }
+}
