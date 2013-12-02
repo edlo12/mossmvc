@@ -21,10 +21,12 @@
           $moss = &$this;
           require(MOSSMVC_SITE_PATH.'/config.php');
           
+          
           // Start a named session
-
-         session_name($this->config['session_name']);
-         session_start(); 
+          session_name($this->config['session_name']);
+          session_start();
+          $this->session = new CSession($this->config['session_key']);
+          $this->session->PopulateFromSession();
 
          // Set default date/time-zone
 
