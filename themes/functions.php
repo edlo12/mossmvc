@@ -22,17 +22,35 @@
     * Print debuginformation from the framework.
     */
     function get_debug() {
-      $moss = CMossmvc::Instance(); 
+      $moss = CMossmvc::Instance();
+      if(empty($moss->config['debug'])){
+        return;
+      }
+      // Get the debug output
       $html = null;
-      if(isset($moss->config['debug']['db-num-queries']) && $moss->config['debug']['db-num-queries'] && isset($mosss->db)) {
+      if(isset($moss->config['debug']['db-num-queries']) && $moss->config['debug']['db-num-queries'] && isset($moss->db)) {
+        $flash = $moss->session->GetFlash('database_numQueries');
+        $flash = $flash ? "$flash + " : null;
         $html .= "<p>Database made " . $moss->db->GetNumQueries() . " queries.</p>";
       }   
       if(isset($moss->config['debug']['db-queries']) && $moss->config['debug']['db-queries'] && isset($moss->db)) {
-        $html .= "<p>Database made the following queries.</p><pre>" . implode('<br/><br/>', $moss->db->GetQueries()) . "</pre>";
+        $flash = $moss->session->GetFlash('database_queries');
+        $queries = $moss->db->GetQueries();
+        if($flash){
+          $queries = array_merge($flash, $queries);
+        }
+        $html .= "<p>Database made the following queries.</p><pre>" . implode('<br/><br/>', $queries) . "</pre>";
       }   
+      if(isset($moss->config['debug']['timmer']) && $moss->config['debug']['timmer']) {
+        $html .= "<p>Page was loaded in ".round(microtime(true)-$moss->timer['first'], 5)*1000 . " msecs.</p>";
+      }
       if(isset($moss->config['debug']['mossmvc']) && $moss->config['debug']['mossmvc']) {
         $html .= "<hr><h3>Debuginformation</h3><p>The content of CMossmvc:</p><pre>" . htmlent(print_r($moss, true)) . "</pre>";
-      }   
+      }
+      if(isset($moss->config['debug']['session']) && $moss->config['debug']['session']){
+        $html .= "<hr><h3>SESSION</h3><p>The content of CMossmvc->session:</p><pre>".htmlent(print_r($moss->session, true))."</pre>";
+        $html .= "<p>The content of \$_SESSION:</p><pre>".htmlent(print_r($_SESSION,true))."</pre>";
+      }
       return $html;
     }
     

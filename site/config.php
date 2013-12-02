@@ -19,7 +19,8 @@
     $moss->config['debug']['mossmvc'] = false;
     $moss->config['debug']['db-num-queries'] = true;
     $moss->config['debug']['db-queries'] = true;    
-
+    $moss->config['debug']['session'] = false;
+    $moss->config['debug']['timer'] = true;
 
    /**
     * Define the controllers, their classname and enable/disable them.
@@ -40,7 +41,7 @@
     * Define session name
     */
     $moss->config['session_name'] = preg_replace('/[:\.\/-_]/', '', $_SERVER["SERVER_NAME"]);
-
+    $moss->config['session_key']  = 'mossmvc';
     /*
     * Define server timezone
     */
@@ -85,4 +86,3 @@
     $moss->config['database'][0]['dsn'] = 'sqlite:' . MOSSMVC_SITE_PATH . '/data/.ht.sqlite';
     
     
-    $moss->config['session_key']  = 'mossmvc';

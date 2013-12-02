@@ -7,16 +7,22 @@
     class CMossmvc implements ISingleton {
 
        private static $instance = null;
-       public $config = null;
-       public $request = null;
-       public $data = null;
-       public $db = null;
+       public $config = array();
+       public $request;
+       public $data;
+       public $db;
+       public $views;
+       public $session;
+       public $timer = array();
        
        /**
         * Constructor
         */
        protected function __construct() {
 
+       // time page generation
+       $this->timer['first']= microtime(true);
+       
       // include the site specific config.php and create a ref to $moss to be used by config.php
           $moss = &$this;
           require(MOSSMVC_SITE_PATH.'/config.php');
@@ -107,6 +113,14 @@
         * ThemeEngineRender, renders the reply of the request.
         */
       public function ThemeEngineRender() {
+         // Save to session before output anything
+         $this->session->StoreInSession();
+         
+             // Is theme enabled?
+      if(!isset($this->config['theme'])) {
+        return;
+      }
+    
         // Get the paths and settings for the theme
         $themeName    = $this->config['theme']['name'];
         $themePath    = MOSSMVC_INSTALL_PATH . "/themes/{$themeName}";

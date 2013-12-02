@@ -25,7 +25,7 @@ class CCGuestbook extends CObject implements IController, IHasSQL {
         $this->views->SetTitle($this->pageTitle);
         $this->views->AddInclude(__DIR__ . '/index.tpl.php', array(
           'entries'=>$this->ReadAllFromDatabase(),
-          'formAction'=>$this->request->CreateUrl('guestbook/handler')
+          'formAction'=>$this->request->CreateUrl('','handler')
         ));
       }
       
@@ -79,8 +79,7 @@ class CCGuestbook extends CObject implements IController, IHasSQL {
        */
       private function ReadAllFromDatabase() {
         try {
-          $this->db->SetAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          return $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('select * from guestbook'));
+            return $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('select * from guestbook'));
         } catch(Exception $e) {
           return array();   
         }
