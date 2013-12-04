@@ -14,7 +14,7 @@
      * Set what to show as debug or developer information in the get_debug() theme helper.
      */
     
-    $moss->config['debug']['display-mossmvc'] = false;
+
     
     $moss->config['debug']['mossmvc'] = false;
     $moss->config['debug']['db-num-queries'] = true;

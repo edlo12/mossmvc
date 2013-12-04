@@ -7,7 +7,7 @@
     /**
     * Create a url by prepending the base_url.
     */
-    function base_url($url) {
+    function base_url($url=null) {
       return CMossmvc::Instance()->request->base_url . trim($url, '/');
     }
 
@@ -31,7 +31,7 @@
       if(isset($moss->config['debug']['db-num-queries']) && $moss->config['debug']['db-num-queries'] && isset($moss->db)) {
         $flash = $moss->session->GetFlash('database_numQueries');
         $flash = $flash ? "$flash + " : null;
-        $html .= "<p>Database made " . $moss->db->GetNumQueries() . " queries.</p>";
+        $html .= "<p>Database made $flash" . $moss->db->GetNumQueries() . " queries.</p>";
       }   
       if(isset($moss->config['debug']['db-queries']) && $moss->config['debug']['db-queries'] && isset($moss->db)) {
         $flash = $moss->session->GetFlash('database_queries');
@@ -41,7 +41,7 @@
         }
         $html .= "<p>Database made the following queries.</p><pre>" . implode('<br/><br/>', $queries) . "</pre>";
       }   
-      if(isset($moss->config['debug']['timmer']) && $moss->config['debug']['timmer']) {
+      if(isset($moss->config['debug']['timer']) && $moss->config['debug']['timer']) {
         $html .= "<p>Page was loaded in ".round(microtime(true)-$moss->timer['first'], 5)*1000 . " msecs.</p>";
       }
       if(isset($moss->config['debug']['mossmvc']) && $moss->config['debug']['mossmvc']) {
@@ -87,3 +87,11 @@
       }
       return $html;
     }
+    
+/**
+ * Create a url to an internal resource.
+ */
+ function create_url($url=null) {
+    return CMossmvc::Instance()->request->CreateUrl($url);
+  }
+

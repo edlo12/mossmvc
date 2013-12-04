@@ -47,7 +47,6 @@ class CRequest {
           $scriptPart = dirname($scriptName);
         }
        
-//        $query = trim(substr($requestUri, strlen(rtrim($scriptPart, '/'))), '/');   
         // Set query to be everything after base_url, except the optonal querystring
        $query = trim(substr($requestUri, strlen(rtrim($scriptPart,'/'))),'/');
        $pos =strcspn($query,'?');
@@ -78,9 +77,9 @@ class CRequest {
         $this->request_uri  = $requestUri;
         $this->script_name  = $scriptName;
         $this->query        = $query;
-        $this->splits        = $splits;
-        $this->controller    = $controller;
-        $this->method        = $method;
+        $this->splits       = $splits;
+        $this->controller   = $controller;
+        $this->method       = $method;
         $this->arguments    = $arguments;
       }
       

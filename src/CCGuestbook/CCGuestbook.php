@@ -6,10 +6,6 @@
     */
 class CCGuestbook extends CObject implements IController, IHasSQL {
 
-      private $pageTitle = 'Mossmvc Guestbook Example';
-
-     
-
       /**
        * Constructor
        */
@@ -22,7 +18,7 @@ class CCGuestbook extends CObject implements IController, IHasSQL {
        * Implementing interface IController. All controllers must have an index action.
        */
       public function Index() {
-        $this->views->SetTitle($this->pageTitle);
+        $this->views->SetTitle('Mossmvc Guestbook Example');
         $this->views->AddInclude(__DIR__ . '/index.tpl.php', array(
           'entries'=>$this->ReadAllFromDatabase(),
           'formAction'=>$this->request->CreateUrl('','handler')
@@ -44,8 +40,8 @@ class CCGuestbook extends CObject implements IController, IHasSQL {
           $this->CreateTableInDatabase();
         }
         $this->RedirectTo($this->request->CreateUrl($this->request->controller));
-//        header('Location: ' . $this->request->CreateUrl('guestbook'));
       }
+
       /**
        * Save a new entry to database.
        */

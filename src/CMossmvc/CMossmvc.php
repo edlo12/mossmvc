@@ -72,9 +72,9 @@
 
            // Is the controller enabled in config.php?
         $controllerExists    = isset($this->config['controllers'][$controller]);
-        $controllerEnabled    = false;
-        $className             = false;
-        $classExists           = false;
+        $controllerEnabled   = false;
+        $className           = false;
+        $classExists         = false;
 
         if($controllerExists) {
           $controllerEnabled    = ($this->config['controllers'][$controller]['enabled'] == true);
@@ -106,12 +106,10 @@
       die('404. Page is not found.');
     }
   }      
+   
        /**
-        * Theme Engine Render, renders the views using the selected theme.
-        */
-       /**
-        * ThemeEngineRender, renders the reply of the request.
-        */
+        * ThemeEngineRender, renders the reply of the request to HTML or whatever.
+        */ 
       public function ThemeEngineRender() {
          // Save to session before output anything
          $this->session->StoreInSession();
