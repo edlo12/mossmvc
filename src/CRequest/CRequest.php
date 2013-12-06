@@ -105,7 +105,7 @@ class CRequest {
        */
       public function CreateUrl($url=null, $method=null) {
         //if fully qualified just leave it.
-        if(empty($url) && (strpos($url, '://') || $url[0] == '/')){
+        if(!empty($url) && (strpos($url, '://') || $url[0] == '/')){
           return $url;
         }
         //Get current controller if empty and method choosen
