@@ -51,10 +51,15 @@ class CMGuestbook extends CObject implements IHasSQL {
        * Add a new entry to the guestbook and save to database.
        */
       public function Add($entry) {
-        $this->db->ExecuteQuery(self::SQL('insert into guestbook'), array($entry));
-        $this->session->AddMessage('success', 'Successfully inserted new message.');
-        if($this->db->rowCount() != 1) {
-          die('Failed to insert new guestbook item into database.');
+        if(!empty($entry))
+        {
+          $this->db->ExecuteQuery(self::SQL('insert into guestbook'), array($entry));
+          $this->session->AddMessage('success', 'Successfully inserted new message.');
+          if($this->db->rowCount() != 1) {
+            die('Failed to insert new guestbook item into database.');
+          }
+        }else {
+          $this->session->AddMessage('notice', 'you need write something');
         }
       }
      
