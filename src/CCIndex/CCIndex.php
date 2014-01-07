@@ -27,7 +27,14 @@ class CCIndex extends CObject implements IController {
          */
         private function Menu() {        
                 $moss = CMossmvc::Instance();
-                $menu = array('index', 'index/index', 'developer', 'developer/index', 'developer/links', 'developer/display-object','guestbook');
+                $menu = array('index',
+                              'index/index',
+                              'developer',
+                              'developer/index',
+                              'developer/links',
+                              'developer/display-object',
+                              'guestbook',
+                              'user');
                 
                 $html = null;
                 foreach($menu as $val) {
