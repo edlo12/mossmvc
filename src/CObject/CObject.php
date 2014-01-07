@@ -31,27 +31,27 @@ class CObject {
          */
         protected function RedirectTo($urlOrController=null, $metod=null) {
          $moss = CMossmvc::Instance();
-    if(isset($moss->config['debug']['db-num-queries']) && $moss->config['debug']['db-num-queries'] && isset($moss->db)) {
-      $this->session->SetFlash('database_numQueries', $this->db->GetNumQueries());
-    }
-    if(isset($moss->config['debug']['db-queries']) && $moss->config['debug']['db-queries'] && isset($moss->db)) {
-      $this->session->SetFlash('database_queries', $this->db->GetQueries());
-    }
-    if(isset($moss->config['debug']['timer']) && $moss->config['debug']['timer']) {
+       if(isset($moss->config['debug']['db-num-queries']) && $moss->config['debug']['db-num-queries'] && isset($moss->db)) {
+         $this->session->SetFlash('database_numQueries', $this->db->GetNumQueries());
+       }
+       if(isset($moss->config['debug']['db-queries']) && $moss->config['debug']['db-queries'] && isset($moss->db)) {
+         $this->session->SetFlash('database_queries', $this->db->GetQueries());
+       }
+       if(isset($moss->config['debug']['timer']) && $moss->config['debug']['timer']) {
          $this->session->SetFlash('timer', $moss->timer);
-    }
-    $this->session->StoreInSession();
-    header('Location: ' . $this->request->CreateUrl($urlOrController, $metod));
-  }
+       }
+       $this->session->StoreInSession();
+       header('Location: ' . $this->request->CreateUrl($urlOrController, $metod));
+ }    
   
         /**
          * Redirect to a method within the current controller. Defaults to index-method. Uses RedirectTo().
          *
-          * @param string method name the method, default is index method.
+         * @param string method name the method, default is index method.
          */
         protected function RedirectToController($method=null) {
     $this->RedirectTo($this->request->controller, $method);
-
+ }
 
         /**
          * Redirect to a controller and method. Uses RedirectTo().
