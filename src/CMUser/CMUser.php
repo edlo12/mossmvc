@@ -10,8 +10,8 @@ class CMUser extends CObject implements IHasSQL {
   /**
 * Constructor
 */
-  public function __construct() {
-    parent::__construct();
+  public function __construct($moss=null) {
+    parent::__construct($moss);
   }
 
       /**
@@ -80,10 +80,18 @@ class CMUser extends CObject implements IHasSQL {
             unset($user['password']);
     if($user) {
       $user['groups'] = $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('get group memberships'), array($user['id']));
+      foreach($user['groups'] as $val) {
+        if($val['id'] == 1) {
+          $user['hasRoleAdmin'] = true;
+        }
+        if($val['id'] == 2) {
+          $user['hasRoleUser'] = true;
+        }
+      }
       $this->session->SetAuthenticatedUser($user);
-      $this->session->AddMessage('success', "Welcome '{$user['name']}'.");
+      $this->AddMessage('success', "Welcome '{$user['name']}'.");
     } else {
-      $this->session->AddMessage('notice', "Could not login, user does not exists or password did not match.");
+      $this->AddMessage('notice', "Could not login, user does not exists or password did not match.");
     }
     return ($user != null);
   }
@@ -94,7 +102,7 @@ class CMUser extends CObject implements IHasSQL {
 */
   public function Logout() {
     $this->session->UnsetAuthenticatedUser();
-    $this->session->AddMessage('success', "You have logged out.");
+    $this->AddMessage('success', "You have logged out.");
   }
   
 
@@ -108,14 +116,54 @@ class CMUser extends CObject implements IHasSQL {
   }
   
   
-  /**
-* Get profile information on user.
-*
-* @returns array with user profile or null if anonymous user.
-*/
+/**
+ * Get profile information on user.
+ *
+ * @returns array with user profile or null if anonymous user.
+ */
   public function GetUserProfile() {
     return $this->session->GetAuthenticatedUser();
   }
+ 
+      /**
+       * Get the user acronym.
+       *
+       * @returns string with user acronym or null
+       */
+      public function GetAcronym() {
+        $profile = $this->GetProfile();
+        return isset($profile['acronym']) ? $profile['acronym'] : null;
+      } 
+  
+      /**
+       * Does the user have the admin role?
+       *
+       * @returns boolen true or false.
+       */
+      public function IsAdministrator() {
+        $profile = $this->GetProfile();
+        return isset($profile['hasRoleAdmin']) ? $profile['hasRoleAdmin'] : null;
+      }
+     
+     /**
+      * Get profile information on user.
+      *
+      * @returns array with user profile or null if anonymous user.
+      */
+    public function GetProfile() {
+      return $this->session->GetAuthenticatedUser();
+    }
   
   
+  /**
+  * Get the user acronym.
+  *
+  * @returns string with user acronym or null
+  */
+    public function GetAcronym() {
+      $profile = $this->GetProfile();
+      return isset($profile['acronym']) ? $profile['acronym'] : null;
+    }  
+      
+      
 }

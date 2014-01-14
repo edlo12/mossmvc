@@ -12,18 +12,22 @@ class CObject {
        public $db;
        public $views;
        public $session;
+       public $user;
 
        /**
-        * Constructor
+        * Constructor, can be instantiated by sending in the 
         */
-       protected function __construct() {
-        $moss = CMossmvc::Instance();
+       protected function __construct($moss=null) {
+       if(!$moss) {
+              $moss = CMossmvc::Instance();
+       }
         $this->config   = &$moss->config;
         $this->request  = &$moss->request;
         $this->data     = &$moss->data;
         $this->db       = &$moss->db;
         $this->views    = &$moss->views;
         $this->session  = &$moss->session;
+        $this->user     = &$moss->user;
       }
       
         /**
@@ -31,13 +35,13 @@ class CObject {
          */
         protected function RedirectTo($urlOrController=null, $metod=null) {
          $moss = CMossmvc::Instance();
-       if(isset($moss->config['debug']['db-num-queries']) && $moss->config['debug']['db-num-queries'] && isset($moss->db)) {
+       if(isset($this->config['debug']['db-num-queries']) && $this->config['debug']['db-num-queries'] && isset($this->db)) {
          $this->session->SetFlash('database_numQueries', $this->db->GetNumQueries());
        }
-       if(isset($moss->config['debug']['db-queries']) && $moss->config['debug']['db-queries'] && isset($moss->db)) {
+       if(isset($this->config['debug']['db-queries']) && $this->config['debug']['db-queries'] && isset($this->db)) {
          $this->session->SetFlash('database_queries', $this->db->GetQueries());
        }
-       if(isset($moss->config['debug']['timer']) && $moss->config['debug']['timer']) {
+       if(isset($this->config['debug']['timer']) && $this->config['debug']['timer']) {
          $this->session->SetFlash('timer', $moss->timer);
        }
        $this->session->StoreInSession();
@@ -64,6 +68,32 @@ class CObject {
          $method = is_null($method) ? $this->request->method : null;        
          $this->RedirectTo($this->request->CreateUrl($controller, $method));
   }
+ 
+ /**
+  * Save a message in the session. Uses $this->session->AddMessage()
+  *
+  * @param $type string the type of message, for example: notice, info, success, warning, error.
+  * @param $message string the message.
+  */
+
+  protected function AddMessage($type, $message) {
+    $this->session->AddMessage($type, $message);
+  }
+
+
+
+  /**
+   * Create an url. Uses $this->request->CreateUrl()
+   *
+   * @param $urlOrController string the relative url or the controller
+   * @param $method string the method to use, $url is then the controller or empty for current
+   * @param $arguments string the extra arguments to send to the method
+   */
+
+  protected function CreateUrl($urlOrController=null, $method=null, $arguments=null) {
+    $this->request->CreateUrl($urlOrController, $method, $arguments);
+  }
+
 
 
 }

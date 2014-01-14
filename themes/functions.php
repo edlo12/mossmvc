@@ -98,3 +98,19 @@
     return CMossmvc::Instance()->request->CreateUrl($urlOrController, $method, $arguments);
   }
 
+    /**
+    * Login menu. Creates a menu which reflects if user is logged in or not.
+    */
+    function login_menu() {
+      $moss = CMossmvc::Instance();
+      if($moss->user->IsAuthenticated()) {
+        $items = "<a href='" . create_url('user/profile') . "'>" . $moss->user->GetAcronym() . "</a> ";
+        if($moss->user->IsAdministrator()) {
+          $items .= "<a href='" . create_url('acp') . "'>acp</a> ";
+        }
+        $items .= "<a href='" . create_url('user/logout') . "'>logout</a> ";
+      } else {
+        $items = "<a href='" . create_url('user/login') . "'>login</a> ";
+      }
+      return "<nav>$items</nav>";
+    }

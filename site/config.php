@@ -36,12 +36,13 @@
       'developer' => array('enabled' => true,'class' => 'CCDeveloper'),
       'guestbook' => array('enabled' => true,'class' => 'CCGuestbook'),
       'user'      => array('enabled' => true,'class' => 'CCUser'),
+      'acp'       => array('enabled' => true,'class' => 'CCAdminControlPanel'),
     );
     
     /*
     * Define session name
     */
-    $moss->config['session_name'] = preg_replace('/[:\.\/-_]/', '', $_SERVER["SERVER_NAME"]);
+    $moss->config['session_name'] = preg_replace('/[:\.\/-_]/', '', __DIR__);
     $moss->config['session_key']  = 'mossmvc';
     /*
     * Define server timezone
