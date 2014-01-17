@@ -48,7 +48,8 @@ body{font-family:tahoma,sans-serif;
 
 #login-menu{float:right;
             font-size:smaller;
-            color: #6F4234;}
+            color: #6F4234;
+            text-transform: uppercase;}
 
 
 /**
