@@ -2,7 +2,7 @@
     /**
     * A user controller  to manage login and view edit the user profile.
     *
-    * @package LydiaCore
+    * @package MossmvcCore
     */
     class CCUser extends CObject implements IController {
 
@@ -32,7 +32,7 @@
 /**
 * View and edit user profile.
 */
-  public function Profile() {
+  public function Profil() {
     $this->views->SetTitle('User Profile');
     $this->views->AddInclude(__DIR__ . '/profile.tpl.php', array(
       'is_authenticated'=>$this->user->IsAuthenticated(),
