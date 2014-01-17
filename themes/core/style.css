@@ -46,7 +46,9 @@ body{font-family:tahoma,sans-serif;
  * Login menu
  */
 
-#login-menu{float:right;font-size:smaller;}
+#login-menu{float:right;
+            font-size:smaller;
+            color: #6F4234;}
 
 
 /**
