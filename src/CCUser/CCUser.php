@@ -32,7 +32,7 @@
 /**
 * View and edit user profile.
 */
-  public function Profil() {
+  public function Profile() {
     $this->views->SetTitle('User Profile');
     $this->views->AddInclude(__DIR__ . '/profile.tpl.php', array(
       'is_authenticated'=>$this->user->IsAuthenticated(),

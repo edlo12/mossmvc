@@ -35,7 +35,7 @@ class CCIndex extends CObject implements IController {
                               'user',
                               'user/login',
                               'user/logout',
-                              'user/profil',
+                              'user/profile',
                               'acp',
                               );
                 
