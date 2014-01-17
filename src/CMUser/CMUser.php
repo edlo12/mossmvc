@@ -68,12 +68,12 @@ class CMUser extends CObject implements IHasSQL {
   
 
   /**
-* Login by autenticate the user and password. Store user information in session if success.
-*
-* @param string $akronymOrEmail the emailadress or user akronym.
-* @param string $password the password that should match the akronym or emailadress.
-* @returns booelan true if match else false.
-*/
+   * Login by autenticate the user and password. Store user information in session if success.
+   *
+   * @param string $akronymOrEmail the emailadress or user akronym.
+   * @param string $password the password that should match the akronym or emailadress.
+   * @returns booelan true if match else false.
+   */
   public function Login($akronymOrEmail, $password) {
     $user = $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('check user password'), array($password, $akronymOrEmail, $akronymOrEmail));
     $user = (isset($user[0])) ? $user[0] : null;
@@ -98,8 +98,8 @@ class CMUser extends CObject implements IHasSQL {
   
 
   /**
-* Logout.
-*/
+   * Logout.
+   */
   public function Logout() {
     $this->session->UnsetAuthenticatedUser();
     $this->AddMessage('success', "You have logged out.");
@@ -107,10 +107,10 @@ class CMUser extends CObject implements IHasSQL {
   
 
   /**
-* Does the session contain an authenticated user?
-*
-* @returns boolen true or false.
-*/
+  * Does the session contain an authenticated user?
+  *
+  * @returns boolen true or false.
+  */
   public function IsAuthenticated() {
     return ($this->session->GetAuthenticatedUser() != false);
   }
@@ -125,16 +125,6 @@ class CMUser extends CObject implements IHasSQL {
     return $this->session->GetAuthenticatedUser();
   }
  
-      /**
-       * Get the user acronym.
-       *
-       * @returns string with user acronym or null
-       */
-      public function GetAcronym() {
-        $profile = $this->GetProfile();
-        return isset($profile['acronym']) ? $profile['acronym'] : null;
-      } 
-  
       /**
        * Does the user have the admin role?
        *
