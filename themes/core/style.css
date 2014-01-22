@@ -110,7 +110,8 @@ form.inline p { margin-bottom:5px; }
  * Forms
  */
 input { font: inherit; }
-
+input[readonly] { color:  #666;}
+label { font-size: smaller;}
 
 /**
 * User feedback message wrappers.

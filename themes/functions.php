@@ -103,9 +103,9 @@
     */
     function login_menu() {
       $moss = CMossmvc::Instance();
-      if($moss->user->IsAuthenticated()) {
-        $items = "<a href='" . create_url('user/profile') . "'>" . $moss->user->GetAcronym() . "</a> ";
-        if($moss->user->IsAdministrator()) {
+      if($moss->user['isAuthenticated']) {
+        $items = "<a href='" . create_url('user/profile') . "'>" . $moss->user['acronym'] . "</a> ";
+        if($moss->user['hasRoleAdministrator']) {
           $items .= "<a href='" . create_url('acp') . "'>acp</a> ";
         }
         $items .= "<a href='" . create_url('user/logout') . "'>logout</a> ";
