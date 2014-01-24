@@ -42,7 +42,7 @@ class CViewContainer {
         */
        public function SetVariable($key, $value) {
          $this->data[$key] = $value;
-         return $this
+         return $this;
       }
 
 
