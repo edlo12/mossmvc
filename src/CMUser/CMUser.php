@@ -15,7 +15,7 @@ public $profile = array();
  */
   public function __construct($moss=null) {
     parent::__construct($moss);
-    $profile = $this->session->GetAthenticateser();
+    $profile = $this->session->GetAthenticatedUser();
     $this->profile = is_null($profile) ? false : true;
   }
   
