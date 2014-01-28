@@ -7,7 +7,7 @@
 <p>You are member of <?=count($user['groups'])?> group(s).</p>
 <ul>
     <?php foreach($user['groups'] as $group): ?>
-    <li><?=group['name'] ?></li>
+    <li><?=$group['name']?></li>
     <?php endforeach; ?>
 </ul>
 <?php else: ?>
