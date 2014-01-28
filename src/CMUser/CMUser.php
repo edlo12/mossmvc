@@ -108,7 +108,7 @@ public $profile = array();
         }
       }
       $this->profile = $user;
-      $this->session->SetAuthenticateUser($this->profile);
+      $this->session->SetAuthenticatedUser($this->profile);
     }
     return ($user != null);
   }
