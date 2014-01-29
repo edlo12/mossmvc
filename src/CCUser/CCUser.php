@@ -24,7 +24,7 @@
       public function Index() {
         $this->views->SetTitle('User Controller')
                     ->AddInclude(__DIR__ . '/index.tpl.php', array(
-          'is_authenticated'=>$this->user['IsAuthenticated'],
+          'is_authenticated'=>$this->user['isAuthenticated'],
           'user'=>$this->user,
         ));
       }
