@@ -43,8 +43,8 @@ body{font-family:tahoma,sans-serif;
 }
 
  /**
- * Login menu
- */
+  * Login menu
+  */
 
 #login-menu{float:right;
             font-size:smaller;
@@ -52,7 +52,10 @@ body{font-family:tahoma,sans-serif;
             text-transform: capitalize;
             font-weight: bold;
             padding: 10px;}
-
+#login-menu img.gravatar {vertical-align: middle;}
+#login-menu a {text-decoration: none;}
+#login-menu a:hover {text-decoration: underline;}
+ 
 
 /**
  * Banner
@@ -113,15 +116,7 @@ input { font: inherit; }
 input[readonly] { color:  #666;}
 label { font-size: smaller;}
 
-/**
- * Login Menu
- */
-#login-menu {float: right;
-              font-size: smaller;}
-#login-menu img.gravatar {vertical-align: middle;}
-#login-menu a {text-decoration: none;}
-#login-menu a:hover {text-decoration: underline;}
- 
+
 /**
 * User feedback message wrappers.
 */
