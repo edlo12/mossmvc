@@ -51,7 +51,7 @@ body{font-family:tahoma,sans-serif;
             color: #6F4234;
             text-transform: capitalize;
             font-weight: bold;
-            padding: 10px;}
+            padding: 15px;}
 #login-menu img.gravatar {vertical-align: middle;}
 #login-menu a {text-decoration: none;}
 #login-menu a:hover {text-decoration: underline;}
