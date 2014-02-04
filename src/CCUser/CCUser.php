@@ -44,6 +44,32 @@
                     ));
       }  
   
+  
+      /**
+       * Change the password.
+       */
+      public function DoChangePassword($form) {
+        if($form['password']['value'] != $form['password1']['value'] || empty($form['password']['value']) || empty($form['password1']['value'])) {
+          $this->AddMessage('error', 'Password does not match or is empty.');
+        } else {
+          $ret = $this->user->ChangePassword($form['password']['value']);
+          $this->AddMessage($ret, 'Saved new password.', 'Failed updating password.');
+        }
+        $this->RedirectToController('profile');
+      }
+        
+   
+      /**
+       * Save updates to profile information.
+       */
+      public function DoProfileSave($form) {
+        $this->user['name'] = $form['name']['value'];
+        $this->user['email'] = $form['email']['value'];
+        $ret = $this->user->Save();
+        $this->AddMessage($ret, 'Saved profile.', 'Failed saving profile.');
+        $this->RedirectToController('profile');
+      }
+      
       /**
        * Authenticate and login a user.
        */
@@ -68,6 +94,7 @@
         }
       }
       
+      
       /**
        * Logout a user.
        */
@@ -83,31 +110,6 @@
       public function Init() {
         $this->user->Init();
         $this->RedirectToController();
-      }
-     
-      /**
-       * Save updates to profile information.
-       */
-      public function DoProfileSave($form) {
-        $this->user['name'] = $form['name']['value'];
-        $this->user['email'] = $form['email']['value'];
-        $ret = $this->user->Save();
-        $this->AddMessage($ret, 'Saved profile.', 'Failed saving profile.');
-        $this->RedirectToController('profile');
-      }
-      
-      
-      /**
-       * Change the password.
-       */
-      public function DoChangePassword($form) {
-        if($form['password']['value'] != $form['password1']['value'] || empty($form['password']['value']) || empty($form['password1']['value'])) {
-          $this->AddMessage('error', 'Password does not match or is empty.');
-        } else {
-          $ret = $this->user->ChangePassword($form['password']['value']);
-          $this->AddMessage($ret, 'Saved new password.', 'Failed updating password.');
-        }
-        $this->RedirectToController('profile');
       }
       
       

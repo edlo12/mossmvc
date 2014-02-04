@@ -39,17 +39,18 @@
       'acp'       => array('enabled' => true,'class' => 'CCAdminControlPanel'),
     );
     
-    /*
+   /*
     * Define session name
     */
     $moss->config['session_name'] = preg_replace('/[:\.\/-_]/', '', __DIR__);
     $moss->config['session_key']  = 'mossmvc';
-    /*
+    
+   /*
     * Define server timezone
     */
     $moss->config['timezone'] = 'Europe/Stockholm';
 
-    /*
+   /*
     * Define internal character encoding
     */
     $moss->config['character_encoding'] = 'UTF-8';

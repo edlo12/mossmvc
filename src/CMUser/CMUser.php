@@ -16,7 +16,8 @@ public $profile = array();
   public function __construct($moss=null) {
     parent::__construct($moss);
     $profile = $this->session->GetAuthenticatedUser();
-    $this->profile = is_null($profile) ? false : true;
+    $this->profile = is_null($profile) ? array() : $profile;
+    $this['isAuthenticated'] = is_null($profile) ? false : true;
   }
   
    /**
@@ -40,8 +41,8 @@ public $profile = array();
           'drop table user'         => "DROP TABLE IF EXISTS User;",
           'drop table group'        => "DROP TABLE IF EXISTS Groups;",
           'drop table user2group'   => "DROP TABLE IF EXISTS User2Groups;",
-          'create table user'       => "CREATE TABLE IF NOT EXISTS User (id INTEGER PRIMARY KEY, acronym TEXT KEY, name TEXT, email TEXT, password TEXT, created DATETIME default (datetime('now')));",
-          'create table group'      => "CREATE TABLE IF NOT EXISTS Groups (id INTEGER PRIMARY KEY, acronym TEXT KEY, name TEXT, created DATETIME default (datetime('now')));",
+          'create table user'       => "CREATE TABLE IF NOT EXISTS User (id INTEGER PRIMARY KEY, acronym TEXT KEY, name TEXT, email TEXT, password TEXT, created DATETIME default (datetime('now')), updated DATETIME default NULL);",
+          'create table group'      => "CREATE TABLE IF NOT EXISTS Groups (id INTEGER PRIMARY KEY, acronym TEXT KEY, name TEXT, created DATETIME default (datetime('now')), updated DATETIME default NULL);",
           'create table user2group' => "CREATE TABLE IF NOT EXISTS User2Groups (idUser INTEGER, idGroups INTEGER, created DATETIME default (datetime('now')), PRIMARY KEY(idUser, idGroups));",
           'insert into user'        => 'INSERT INTO User (acronym,name,email,password) VALUES (?,?,?,?);',
           'insert into group'       => 'INSERT INTO Groups (acronym,name) VALUES (?,?);',

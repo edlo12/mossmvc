@@ -5,20 +5,6 @@
     */
 
     /**
-    * Create a url by prepending the base_url.
-    */
-    function base_url($url=null) {
-      return CMossmvc::Instance()->request->base_url . trim($url, '/');
-    }
-
-    /**
-    * Return the current url.
-    */
-    function current_url() {
-      return CMossmvc::Instance()->request->current_url;
-    }
-    
-    /**
     * Print debuginformation from the framework.
     */
     function get_debug() {
@@ -54,25 +40,7 @@
       return $html;
     }
     
-
-
-    /**
-     * Prepend the theme_url, which is the url to the current theme directory.
-     */
-    function theme_url($url) {
-      $moss = CMossmvc::Instance();
-      return "{$moss->request->base_url}themes/{$moss->config['theme']['name']}/{$url}";
-    }
-    
-   /**
-    * Render all views.
-    */
-    function render_views() {
-      return CMossmvc::Instance()->views->Render();
-    }
-    
-        
-   /**
+     /**
     * Get messages stored in flash-session.
     */
     function get_messages_from_session() {
@@ -87,17 +55,6 @@
       }
       return $html;
     }
-    
-/**
- * Create a url to an internal resource.
- * @param string the whole url or the controller. Leave empty for current controller.
- * @param string the method when specifying controller as first argument, else leave empty.
- * @param string the extra arguments to the method, leave empty if not using method.
- */
- function create_url($urlOrController=null, $method=null, $arguments=null) {
-    return CMossmvc::Instance()->request->CreateUrl($urlOrController, $method, $arguments);
-  }
-
     /**
     * Login menu. Creates a menu which reflects if user is logged in or not.
     */
@@ -113,4 +70,46 @@
         $items = "<a href='" . create_url('user/login') . "'>login</a> ";
       }
       return "<nav>$items</nav>";
+    }  /**
+    * Create a url by prepending the base_url.
+    */
+    function base_url($url=null) {
+      return CMossmvc::Instance()->request->base_url . trim($url, '/');
     }
+        
+    
+/**
+ * Create a url to an internal resource.
+ * @param string the whole url or the controller. Leave empty for current controller.
+ * @param string the method when specifying controller as first argument, else leave empty.
+ * @param string the extra arguments to the method, leave empty if not using method.
+ */
+ function create_url($urlOrController=null, $method=null, $arguments=null) {
+    return CMossmvc::Instance()->request->CreateUrl($urlOrController, $method, $arguments);
+  }
+
+
+    /**
+     * Prepend the theme_url, which is the url to the current theme directory.
+     */
+    function theme_url($url) {
+      $moss = CMossmvc::Instance();
+      return "{$moss->request->base_url}themes/{$moss->config['theme']['name']}/{$url}";
+    }
+ 
+    /**
+    * Return the current url.
+    */
+    function current_url() {
+      return CMossmvc::Instance()->request->current_url;
+    }
+    
+
+   
+   /**
+    * Render all views.
+    */
+    function render_views() {
+      return CMossmvc::Instance()->views->Render();
+    }
+    
