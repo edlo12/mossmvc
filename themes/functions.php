@@ -61,7 +61,7 @@
     function login_menu() {
       $moss = CMossmvc::Instance();
       if($moss->user['isAuthenticated']) {
-        $items = "<a href='" . create_url('user/profile') . "'>" . $moss->user['acronym'] . "</a> ";
+        $items = "<a href='" . create_url('user/profile') . "'><img class='gravatar' src='".get_gravatar(20)."'alt=''>" . $moss->user['acronym'] . "</a> ";
         if($moss->user['hasRoleAdministrator']) {
           $items .= "<a href='" . create_url('acp') . "'>acp</a> ";
         }
@@ -69,8 +69,10 @@
       } else {
         $items = "<a href='" . create_url('user/login') . "'>login</a> ";
       }
-      return "<nav>$items</nav>";
-    }  /**
+      return "<nav id='login-menu'>$items</nav>";
+    }
+    
+    /**
     * Create a url by prepending the base_url.
     */
     function base_url($url=null) {
@@ -113,3 +115,9 @@
       return CMossmvc::Instance()->views->Render();
     }
     
+    /**
+    * Get a gravatar based on the user's email.
+    */
+    function get_gravatar($size=null) {
+      return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim(CMossmvc::Instance()->user['email']))) . '.jpg?r=pg&amp;d=wavatar&amp;' . ($size ? "s=$size" : null);
+    }
