@@ -100,7 +100,7 @@
        */
       public function Logout() {
         $this->user->Logout();
-        $this->RedirectToController();
+        $this->RedirectToController('login');
       }
      
 

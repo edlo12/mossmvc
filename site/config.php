@@ -38,6 +38,10 @@
       'user'      => array('enabled' => true,'class' => 'CCUser'),
       'acp'       => array('enabled' => true,'class' => 'CCAdminControlPanel'),
     );
+   /*
+    * How to hash password of new users, choose from: plain, md5salt, md5, sha1salt, sha1.
+    */
+    $moss->config['hashing_algorithm'] = 'sha1salt';
     
    /*
     * Define session name
