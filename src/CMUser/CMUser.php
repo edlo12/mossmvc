@@ -176,7 +176,7 @@ public $profile = array();
   */
   public function CreatePassword($plain, $algorithm=null) {
     $password = array(
-      'algorithm'=>($algorithm ? $algoritm : CMossmvc::Instance()->config['hashing_algorithm']),
+      'algorithm'=>($algorithm ? $algorithm : CMossmvc::Instance()->config['hashing_algorithm']),
       'salt'=>null
     );
     switch($password['algorithm']) {
