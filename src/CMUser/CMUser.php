@@ -98,7 +98,6 @@ public $profile = array();
   public function Login($akronymOrEmail, $password) {
     $user = $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('check user password'), array($akronymOrEmail, $akronymOrEmail));
     $user = (isset($user[0])) ? $user[0] : null;
-            unset($user['password']);
     if(!$user) {
       return false;
     }else
