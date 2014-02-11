@@ -109,7 +109,7 @@ public $profile = array();
     unset($user['password']);
     if($user){
       $user['isAuthenticated'] = true;
-      $user['groups'] = $this->db->ExecuteSelecQueryAndFetchAll(self::SQL('get group memberships'), array($user['id']));
+      $user['groups'] = $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('get group memberships'), array($user['id']));
       foreach($user['groups'] as $val){
         if($val['id'] == 1){
           $user['hasRoleAdmin'] = true;
