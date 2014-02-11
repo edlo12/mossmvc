@@ -197,7 +197,7 @@ public $profile = array();
 */
   public function ChangePassword($plain) {
     $password = $this->CreatePassword($plain);
-    $this->db->ExecuteQuery(self::SQL('update password'), array($password['algoritm'], $password['salt'], $password['password'], $this['id']));
+    $this->db->ExecuteQuery(self::SQL('update password'), array($password['algorithm'], $password['salt'], $password['password'], $this['id']));
     return $this->db->RowCount() === 1;
   }
 
