@@ -34,12 +34,15 @@
        */
       public function Profile() {   
         $form = new CFormUserProfile($this, $this->user);
-        $form->CheckIfSubmitted();
-
+      
+        if($form->Check() === false) {
+         $this->AddMessage('notice', 'Some fields did not validate and the form could not be processed.');
+         $this->RedirectToController('profile');
+        }
         $this->views->SetTitle('User Profile')
                     ->AddInclude(__DIR__ . '/profile.tpl.php', array(
                       'is_authenticated'=>$this->user['isAuthenticated'],
-                      'user'=>$this->user,
+                      'user'=>$this->user, 
                       'profile_form'=>$form->GetHTML(),
                     ));
       }  
