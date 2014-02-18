@@ -1,10 +1,10 @@
 <?php
-   /**
+    /**
     * A utility class to easy creating and handling of forms
     *
-    * @package Mossmvc Core
+    * @package LydiaCore
     */
- class CFormElement implements ArrayAccess{
+    class CFormElement implements ArrayAccess{
 
       /**
        * Properties
@@ -40,8 +40,8 @@
        */
       public function GetHTML() {
         $id = isset($this['id']) ? $this['id'] : 'form-element-' . $this['name'];
-        $class = isset($this['class']) ? " {$this['class']}'" : null;
-        $validates = (isset($this['validation-pass'])&&$this['validation-pass'] === false) ? 'validation-failed' : null;
+        $class = isset($this['class']) ? " {$this['class']}" : null;
+        $validates = (isset($this['validation-pass']) && $this['validation-pass'] === false) ? ' validation-failed' : null;
         $class = (isset($class) || isset($validates)) ? " class='{$class}{$validates}'" : null;
         $name = " name='{$this['name']}'";
         $label = isset($this['label']) ? ($this['label'] . (isset($this['required']) && $this['required'] ? "<span class='form-element-required'>*</span>" : null)) : null;
@@ -49,15 +49,16 @@
         $readonly = isset($this['readonly']) && $this['readonly'] ? " readonly='readonly'" : null;   
         $type    = isset($this['type']) ? " type='{$this['type']}'" : null;
         $value    = isset($this['value']) ? " value='{$this['value']}'" : null;
-       
+
         $messages = null;
         if(isset($this['validation_messages'])) {
-        $message = null;
-        foreach($this['validation_messages'] as $val) {
-         $message .= "<li>{$val}</li>\n";
+          $message = null;
+          foreach($this['validation_messages'] as $val) {
+            $message .= "<li>{$val}</li>\n";
+          }
+          $messages = "<ul class='validation-message'>\n{$message}</ul>\n";
         }
-        $messages = "<ul class='validation-message'>\n{$message}</ul>\n";
-      }
+       
         if($type && $this['type'] == 'submit') {
           return "<p><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} /></p>\n";   
         } else {
@@ -65,25 +66,6 @@
         }
       }
 
-
-      /**
-       * Use the element name as label if label is not set.
-       */
-      public function UseNameAsDefaultLabel() {
-        if(!isset($this['label'])) {
-          $this['label'] = ucfirst(strtolower(str_replace(array('-','_'), ' ', $this['name']))).':';
-        }
-      }
-
-
-      /**
-       * Use the element name as value if value is not set.
-       */
-      public function UseNameAsDefaultValue() {
-        if(!isset($this['value'])) {
-          $this['value'] = ucfirst(strtolower(str_replace(array('-','_'), ' ', $this['name'])));
-        }
-      }
 
       /**
        * Validate the form element value according a ruleset.
@@ -120,8 +102,29 @@
         if(!empty($messages)) $this['validation_messages'] = $messages;
         return $pass;
       }
-      
-}
+
+
+      /**
+       * Use the element name as label if label is not set.
+       */
+      public function UseNameAsDefaultLabel() {
+        if(!isset($this['label'])) {
+          $this['label'] = ucfirst(strtolower(str_replace(array('-','_'), ' ', $this['name']))).':';
+        }
+      }
+
+
+      /**
+       * Use the element name as value if value is not set.
+       */
+      public function UseNameAsDefaultValue() {
+        if(!isset($this['value'])) {
+          $this['value'] = ucfirst(strtolower(str_replace(array('-','_'), ' ', $this['name'])));
+        }
+      }
+
+
+    }
 
 
     class CFormElementText extends CFormElement {
@@ -198,9 +201,25 @@
 
       /**
        * Add a form element
+       *
+       * @param $element CFormElement the formelement to add.
+       * @returns $this CForm
        */
       public function AddElement($element) {
         $this[$element['name']] = $element;
+        return $this;
+      }
+     
+
+      /**
+       * Set validation to a form element
+       *
+       * @param $element string the name of the formelement to add validation rules to.
+       * @param $rules array of validation rules.
+       * @returns $this CForm
+       */
+      public function SetValidation($element, $rules) {
+        $this[$element]['validation'] = $rules;
         return $this;
       }
      
@@ -238,28 +257,31 @@ EOD;
       }
      
 
-  /**
-   * Check if a form was submitted and perform validation and call callbacks
-   *
-   * The form is stored in the session if validation fails. The page should then be redirected
-   * to the original form page, the form will populate from the session and should then be
-   * rendered again.
-   *
-   * @returns boolean true if validates, false if not validate, null if not submitted.
-   */
+      /**
+       * Check if a form was submitted and perform validation and call callbacks.
+       *
+       * The form is stored in the session if validation fails. The page should then be redirected
+       * to the original form page, the form will populate from the session and should then be
+       * rendered again.
+       *
+       * @returns boolean true if validates, false if not validate, null if not submitted.
+       */
       public function Check() {
         $validates = null;
         $values = array();
-        foreach($this->elements as $element) {
-        if(isset($_POST[$element['name']])) {
-          $values[$element['name']]['value'] = $element['value'] = $_POST[$element['name']];
-          if(isset($element['validation'])) {
-            $element['validation-pass'] = $element->Validate($element['validation']);
-            if($element['validation-pass'] === false) {
-              $values[$element['name']] = array('value'=>$element['value'], 'validation_messages'=>$element['validation_messages']);
-              $validates = false;
-            }
-          }
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+          unset($_SESSION['form-validation-failed']);
+          $validates = true;
+          foreach($this->elements as $element) {
+            if(isset($_POST[$element['name']])) {
+              $values[$element['name']]['value'] = $element['value'] = $_POST[$element['name']];
+              if(isset($element['validation'])) {
+                $element['validation-pass'] = $element->Validate($element['validation']);
+                if($element['validation-pass'] === false) {
+                  $values[$element['name']] = array('value'=>$element['value'], 'validation_messages'=>$element['validation_messages']);
+                  $validates = false;
+                }
+              }
               if(isset($element['callback']) && $validates) {
                  call_user_func($element['callback'], $this);
               }
@@ -280,18 +302,5 @@ EOD;
         }
         return $validates;
       }
-      
-      
-      /**
-       * Set validation to a form element
-       *
-       * @param $element string the name of the formelement to add validation rules to.
-       * @param $rules array of validation rules.
-       * @returns $this CForm
-       */
-      public function SetValidation($element, $rules) {
-        $this[$element]['validation'] = $rules;
-        return $this;
-      } 
      
-  }
+        }
