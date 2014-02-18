@@ -75,8 +75,11 @@
        */
       public function Login() {
         $form = new CFormUserLogin($this);
-        $form->CheckIfSubmitted();
-
+//        $form->CheckIfSubmitted();
+        if($form->Check() === false) {
+          $this->AddMessage('notice', 'Some fields did not validate and the form could not be processed.');
+          $this->RedirectToController('login');
+        }
         $this->views->SetTitle('Login')
                     ->AddInclude(__DIR__ . '/login.tpl.php', array('login_form'=>$form->GetHTML()));     
       }
