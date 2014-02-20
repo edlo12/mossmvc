@@ -33,38 +33,39 @@
       public function offsetGet($offset) { return isset($this->attributes[$offset]) ? $this->attributes[$offset] : null; }
 
 
-      /**
-       * Get HTML code for a element.
-       *
-       * @returns HTML code for the element.
-       */
-      public function GetHTML() {
-        $id = isset($this['id']) ? $this['id'] : 'form-element-' . $this['name'];
-        $class = isset($this['class']) ? " {$this['class']}" : null;
-        $validates = (isset($this['validation-pass']) && $this['validation-pass'] === false) ? ' validation-failed' : null;
-        $class = (isset($class) || isset($validates)) ? " class='{$class}{$validates}'" : null;
-        $name = " name='{$this['name']}'";
-        $label = isset($this['label']) ? ($this['label'] . (isset($this['required']) && $this['required'] ? "<span class='form-element-required'>*</span>" : null)) : null;
-        $autofocus = isset($this['autofocus']) && $this['autofocus'] ? " autofocus='autofocus'" : null;   
-        $readonly = isset($this['readonly']) && $this['readonly'] ? " readonly='readonly'" : null;   
-        $type    = isset($this['type']) ? " type='{$this['type']}'" : null;
-        $value    = isset($this['value']) ? " value='{$this['value']}'" : null;
+/**
+ * Get HTML code for a element.
+ *
+ * @returns HTML code for the element.
+ */
+  public function GetHTML() {
+    $id = isset($this['id']) ? $this['id'] : 'form-element-' . $this['name'];
+    $class = isset($this['class']) ? " {$this['class']}" : null;
+    $validates = (isset($this['validation-pass']) && $this['validation-pass'] === false) ? ' validation-failed' : null;
+    $class = (isset($class) || isset($validates)) ? " class='{$class}{$validates}'" : null;
+    $name = " name='{$this['name']}'";
+    $label = isset($this['label']) ? ($this['label'] . (isset($this['required']) && $this['required'] ? "<span class='form-element-required'>*</span>" : null)) : null;
+    $autofocus = isset($this['autofocus']) && $this['autofocus'] ? " autofocus='autofocus'" : null;
+    $readonly = isset($this['readonly']) && $this['readonly'] ? " readonly='readonly'" : null;
+    $type = isset($this['type']) ? " type='{$this['type']}'" : null;
+    $value = isset($this['value']) ? " value='{$this['value']}'" : null;
 
-        $messages = null;
-        if(isset($this['validation_messages'])) {
-          $message = null;
-          foreach($this['validation_messages'] as $val) {
-            $message .= "<li>{$val}</li>\n";
-          }
-          $messages = "<ul class='validation-message'>\n{$message}</ul>\n";
-        }
-       
-        if($type && $this['type'] == 'submit') {
-          return "<p><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} /></p>\n";   
-        } else {
-          return "<p><label for='$id'>$label</label><br><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} />{$messages}</p>\n";          
-        }
+    $messages = null;
+    if(isset($this['validation_messages'])) {
+      $message = null;
+      foreach($this['validation_messages'] as $val) {
+        $message .= "<li>{$val}</li>\n";
       }
+      $messages = "<ul class='validation-message'>\n{$message}</ul>\n";
+    }
+    
+    if($type && $this['type'] == 'submit') {
+      return "<p><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} /></p>\n";	
+    } else {
+      return "<p><label for='$id'>$label</label><br><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} />{$messages}</p>\n";	
+    }
+  }
+
 
 
       /**
@@ -225,14 +226,20 @@
      
 
       /**
-       * Return HTML for the form
+       * Return HTML for the form or the formdefinition.
+       *
+       * @param $type string what part of the form to return.
+       * @returns stritng with HTML for the form.
        */
-      public function GetHTML() {
-        $id      = isset($this->form['id'])      ? " id='{$this->form['id']}'" : null;
-        $class    = isset($this->form['class'])   ? " class='{$this->form['class']}'" : null;
-        $name    = isset($this->form['name'])    ? " name='{$this->form['name']}'" : null;
-        $action = isset($this->form['action'])  ? " action='{$this->form['action']}'" : null;
-        $method = " method='post'";
+      public function GetHTML($type=null) {
+        $id        = isset($this->form['id'])     ? " id    = '{$this->form['id']}'"    : null;
+        $class     = isset($this->form['class'])  ? " class = '{$this->form['class']}'" : null;
+        $name      = isset($this->form['name'])   ? " name  = '{$this->form['name']}'"  : null;
+        $action    = isset($this->form['action']) ? " action= '{$this->form['action']}'": null;
+        $method    = " method = 'post'";
+        if($type == 'form') {
+          return "<form{$id}{$class}{$name}{$action}{$method}>";
+        }
         $elements = $this->GetHTMLForElements();
         $html = <<< EOD
 \n<form{$id}{$class}{$name}{$action}{$method}>
@@ -303,4 +310,4 @@ EOD;
         return $validates;
       }
      
-        }
+  }
