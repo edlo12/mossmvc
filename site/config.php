@@ -102,6 +102,7 @@
    
     $moss->config['database'][0]['dsn'] = 'sqlite:' . MOSSMVC_SITE_PATH . '/data/.ht.sqlite';
     
+    
    /**
     * Allow or disallow creation of new user accounts.
     */

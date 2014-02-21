@@ -28,8 +28,8 @@ public function Index() {
 private function Menu() {	
 $menu = array(
 'index', 'developer', 'developer/links',
-'developer/display-object', 'guestbook', 'user', 'user/login', 'user/logout',
-'user/profile', 'acp',
+'developer/display-object', 'guestbook',
+'user', 'user/login', 'user/logout','user/profile','user/create', 'user/docreate', 'user/dologin', 'acp',
 );
 
     $this->views->SetTitle('Index Controller');
