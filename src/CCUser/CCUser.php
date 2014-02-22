@@ -6,15 +6,11 @@
     */
     class CCUser extends CObject implements IController {
 
-//      private $userModel;
-     
-
       /**
        * Constructor
        */
       public function __construct() {
         parent::__construct();
-//      $this->userModel = new CMUser();
       }
 
 
@@ -78,15 +74,15 @@
        */
       public function Login() {
         $form = new CFormUserLogin($this);
-//        $form->CheckIfSubmitted();
         if($form->Check() === false) {
           $this->AddMessage('notice', 'You must fill in acronym and password.');
           $this->RedirectToController('login');
         }
         $this->views->SetTitle('Login')
                     ->AddInclude(__DIR__ . '/login.tpl.php',
-                      array('login_form'=>$form,'allow_create_user' => CMossmvc::Instance()->config['create_new_users'],
-                      'create_user_url' => $this->CreateUrl(null, 'create'),));     
+                      array('login_form'=>$form,
+                            'allow_create_user' => CMossmvc::Instance()->config['create_new_users'],
+                            'create_user_url' => $this->CreateUrl(null, 'create'),));     
       }
       
       /**
