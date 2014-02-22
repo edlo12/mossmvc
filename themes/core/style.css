@@ -19,9 +19,10 @@ body{font-family:tahoma,sans-serif;
        padding: 1em;
      }
     
-#wrap-footer {margin-top:10px;
+#wrap-footer {margin-top:10px auto;
 	background:#FFF999;
-        background:hsla(0,0%,100%,0.7);padding:10px;margin:10px auto;
+        background:hsla(0,0%,100%,0.7);
+        padding:5px;
         border:1px solid #6F4234;
        -webkit-border-radius: 10px;
        -moz-border-radius: 10px;
