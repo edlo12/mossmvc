@@ -6,7 +6,7 @@
         <?=$login_form['password']->GetHTML()?> 
         <?=$login_form['login']->GetHTML()?>
         <?php
-          echo $create_user_url;
+          echo 'allow_create_user='.$allow_create_user.'create_user_url ='.$create_user_url;
           if($allow_create_user) : ?>
           <p class='form-action-link'><a href='<?=$create_user_url?>' title='Create a new user account'>Create user</a></p>
         <?php endif; ?>
