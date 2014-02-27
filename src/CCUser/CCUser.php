@@ -82,7 +82,7 @@
                     ->AddInclude(__DIR__ . '/login.tpl.php',
                       array('login_form'=>$form,
                             'allow_create_user' => CMossmvc::Instance()->config['create_new_users'],
-                            'create_user_url' => $this->CreateUrl(null, 'create'),));     
+                            'create_user_url' => $this->CreateUrl(null,'create'),));     
       }
       
       /**
