@@ -214,7 +214,7 @@ public $profile = array();
       public function Create($acronym, $password, $name, $email) {
         $user = $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('check user password'), array($acronym, $email));
         $user = (isset($user[0])) ? $user[0] : null;
-        if(!$user) {
+        if($user) {
           $this->AddMessage('error', "acronym or email already exists");
           return false;
         }else {
