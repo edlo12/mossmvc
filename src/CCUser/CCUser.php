@@ -78,7 +78,6 @@
           $this->AddMessage('notice', 'You must fill in acronym and password.');
           $this->RedirectToController('login');
         }
-        echo 'CreateUrl= '.$this->CreateUrl(null,'create');
         $this->views->SetTitle('Login')
                     ->AddInclude(__DIR__ . '/login.tpl.php',
                       array('login_form'=>$form,
