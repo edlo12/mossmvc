@@ -98,8 +98,7 @@ class CObject {
    */
 
   protected function CreateUrl($urlOrController=null, $method=null, $arguments=null) {
-    echo 'urlOrController='.$urlOrController.' method='.$method;
-    $this->request->CreateUrl($urlOrController, $method, $arguments);
+     return $this->request->CreateUrl($urlOrController, $method, $arguments);
   }
 
 
