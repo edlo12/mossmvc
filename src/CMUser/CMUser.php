@@ -212,13 +212,19 @@ public $profile = array();
        * @returns boolean true if user was created or else false and sets failure message in session.
        */
       public function Create($acronym, $password, $name, $email) {
-        $pwd = $this->CreatePassword($password);
-        $this->db->ExecuteQuery(self::SQL('insert into user'), array($acronym, $name, $email, $pwd['algorithm'], $pwd['salt'], $pwd['password']));
-        if($this->db->RowCount() == 0) {
-          $this->AddMessage('error', "Failed to create user.");
+        $user = $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('check user password'), array($acronym, $email));
+        $user = (isset($user[0])) ? $user[0] : null;
+        if(!$user) {
+          $this->AddMessage('error', "acronym or email already exists");
           return false;
+        }else {
+          $pwd = $this->CreatePassword($password);
+          $this->db->ExecuteQuery(self::SQL('insert into user'), array($acronym, $name, $email, $pwd['algorithm'], $pwd['salt'], $pwd['password']));
+          if($this->db->RowCount() == 0) {
+            $this->AddMessage('error', "Failed to create user.");
+            return false;
+          }
+          return true;
         }
-        return true;
       }
-  
 }
