@@ -98,12 +98,10 @@ h2 { border-bottom: 1px solid #ccc;
      padding-bottom: 4px;
 }
 a {text-decoration: none}
-a:link { color: #00a666;}
+a:link { color: #02777a;}
 a:visited {color: #A84C00;}
 a:hover,
-a:focus {
-   color: #5C0A0A;
-}
+a:focus { color: #5C0A0A;}
 a:active {}
 
 input.text,
