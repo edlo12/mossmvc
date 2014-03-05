@@ -99,7 +99,7 @@ h2 { border-bottom: 1px solid #ccc;
 }
 a {text-decoration: none}
 a:link {}
-a:visited {}
+a:visited {color: #A84C00;}
 a:hover,
 a:focus {
    color: #5C0A0A;
