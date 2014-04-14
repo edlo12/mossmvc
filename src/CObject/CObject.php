@@ -37,7 +37,7 @@ class CObject {
 	 * @param $method string the method to use, $url is then the controller or empty for current controller
 	 * @param $arguments string the extra arguments to send to the method
          */
-        protected function RedirectTo($urlOrController=null, $metod=null, $arguments=null) {
+        protected function RedirectTo($urlOrController=null, $method=null, $arguments=null) {
          $moss = CMossmvc::Instance();
        if(isset($this->config['debug']['db-num-queries']) && $this->config['debug']['db-num-queries'] && isset($this->db)) {
          $this->session->SetFlash('database_numQueries', $this->db->GetNumQueries());
@@ -49,7 +49,7 @@ class CObject {
          $this->session->SetFlash('timer', $moss->timer);
        }
        $this->session->StoreInSession();
-       header('Location: ' . $this->request->CreateUrl($urlOrController, $metod, $arguments));
+       header('Location: ' . $this->request->CreateUrl($urlOrController, $method, $arguments));
  }    
   
         /**
