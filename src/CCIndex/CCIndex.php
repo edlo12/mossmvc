@@ -29,7 +29,8 @@ private function Menu() {
 $menu = array(
 'index', 'developer', 'developer/links',
 'developer/display-object', 'guestbook',
-'user', 'user/login', 'user/logout','user/profile','user/create', 'user/docreate', 'user/dologin', 'acp',
+'content',
+'user', 'user/profile','user/create', 'user/docreate', 'acp',
 );
 
     $this->views->SetTitle('Index Controller');
