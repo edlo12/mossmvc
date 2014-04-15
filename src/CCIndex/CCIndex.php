@@ -30,7 +30,7 @@ $menu = array(
 'index', 'developer', 'developer/links',
 'developer/display-object', 'guestbook',
 'content',
-'user', 'user/profile','user/create', 'user/docreate', 'acp',
+'user', 'user/profile','user/create', 'acp',
 );
 
     $this->views->SetTitle('Index Controller');
