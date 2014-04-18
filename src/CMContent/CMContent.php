@@ -133,7 +133,7 @@
       public function ListAll($args=null) {
         try {
           if(isset($args) && isset($args['type'])) {
-              return $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('select * by type', $args), array($args{'type']));
+              return $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('select * by type', $args), array($args['type']));
           } else {
             return $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('select *', $args));
           }
