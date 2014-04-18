@@ -37,6 +37,8 @@
       'guestbook' => array('enabled' => true,'class' => 'CCGuestbook'),
       'user'      => array('enabled' => true,'class' => 'CCUser'),
       'content'   => array('enabled' => true,'class' => 'CCContent'),
+      'blog'      => array('enabled' => true,'class' => 'CCBlog'),
+      'page'      => array('enabled' => true,'class' => 'CCPage'),
       'acp'       => array('enabled' => true,'class' => 'CCAdminControlPanel'),
     );
 
