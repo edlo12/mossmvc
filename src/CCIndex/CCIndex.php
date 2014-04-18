@@ -29,7 +29,7 @@ private function Menu() {
 $menu = array(
 'index', 'developer', 'developer/links',
 'developer/display-object', 'guestbook',
-'content',
+'content','blog','page/home','page/about',
 'user', 'user/profile','user/create', 'acp',
 );
 
