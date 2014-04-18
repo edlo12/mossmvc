@@ -80,15 +80,15 @@
     }
         
     
-/**
- * Create a url to an internal resource.
- * @param string the whole url or the controller. Leave empty for current controller.
- * @param string the method when specifying controller as first argument, else leave empty.
- * @param string the extra arguments to the method, leave empty if not using method.
- */
- function create_url($urlOrController=null, $method=null, $arguments=null) {
-    return CMossmvc::Instance()->request->CreateUrl($urlOrController, $method, $arguments);
-  }
+    /**
+     * Create a url to an internal resource.
+     * @param string the whole url or the controller. Leave empty for current controller.
+     * @param string the method when specifying controller as first argument, else leave empty.
+     * @param string the extra arguments to the method, leave empty if not using method.
+     */
+     function create_url($urlOrController=null, $method=null, $arguments=null) {
+        return CMossmvc::Instance()->request->CreateUrl($urlOrController, $method, $arguments);
+      }
 
 
     /**
@@ -121,3 +121,21 @@
     function get_gravatar($size=null) {
       return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim(CMossmvc::Instance()->user['email']))) . '.jpg?r=pg&amp;d=wavatar&amp;' . ($size ? "s=$size" : null);
     }
+    
+   /**
+    * Escape data to make it safe to write in the browser.
+    */
+    function esc($str) {
+      return htmlEnt($str);
+    }
+
+    /**
+    * Display diff of time between now and a datetime.
+    *
+    * @param $start datetime|string
+    * @returns string
+    */
+    function time_diff($start) {
+      return formatDateTimeDiff($start);
+    }
+
