@@ -55,6 +55,8 @@
       }
       return $html;
     }
+    
+    
     /**
     * Login menu. Creates a menu which reflects if user is logged in or not.
     */
@@ -137,5 +139,17 @@
     */
     function time_diff($start) {
       return formatDateTimeDiff($start);
+    }
+
+
+    /**
+    * Filter data according to a filter. Uses CMContent::Filter()
+    *
+    * @param $data string the data-string to filter.
+    * @param $filter string the filter to use.
+    * @returns string the filtered string.
+    */
+    function filter_data($data, $filter) {
+      return CMContent::Filter($data, $filter);
     }
 

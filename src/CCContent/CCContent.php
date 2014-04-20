@@ -42,7 +42,7 @@
         }
        
         $title = isset($id) ? 'Edit' : 'Create';
-        $this->views->SetTitle("$title content: $id")
+        $this->views->SetTitle("$title content: ".htmlEnt($content['title']))
                     ->AddInclude(__DIR__ . '/edit.tpl.php', array(
                       'user'=>$this->user,
                       'content'=>$content,
