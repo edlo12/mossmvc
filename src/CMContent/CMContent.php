@@ -69,17 +69,17 @@
           $this->db->ExecuteQuery(self::SQL('drop table content'));
           $this->db->ExecuteQuery(self::SQL('create table content'));
           $this->db->ExecuteQuery(self::SQL('insert content'),
-                array('hello-world', 'post', 'Hello World', "This is a demo post.\n\nThis is another row in this demo post.", 'plain', $this->user['id']));
+                array('hello-world', 'post', 'Hello World', "This is a demo post.\\n\\nThis is another row in this demo post.", 'plain', $this->user['id']));
           $this->db->ExecuteQuery(self::SQL('insert content'),
-          array('hello-world-again', 'post', 'Hello World Again', "This is another demo post.\n\nThis is another row in this demo post.", 'plain', $this->user['id']));
+          array('hello-world-again', 'post', 'Hello World Again', "This is another demo post.\\n\\nThis is another row in this demo post.", 'plain', $this->user['id']));
           $this->db->ExecuteQuery(self::SQL('insert content'),
-      array('hello-world-once-more', 'post', 'Hello World Once More', "This is one more demo post.\n\nThis is another row in this demo post.", 'plain', $this->user['id']));
+      array('hello-world-once-more', 'post', 'Hello World Once More', "This is one more demo post.\\n\\nThis is another row in this demo post.", 'plain', $this->user['id']));
           $this->db->ExecuteQuery(self::SQL('insert content'),
-                       array('home', 'page', 'Home page', "This is a demo page, this could be your personal home-page.\n\nMossmvc is a PHP-based MVC-inspired Content management Framework, watch the making of Lydia at: http://dbwebb.se/lydia/tutorial.", 'plain', $this->user['id']));
+                       array('home', 'page', 'Home page', "This is a demo page, this could be your personal home-page.\\n\\nMossmvc is a PHP-based MVC-inspired Content management Framework, watch the making of Lydia at: http:\/\/dbwebb.se\/lydia\/tutorial.", 'plain', $this->user['id']));
           $this->db->ExecuteQuery(self::SQL('insert content'),
-                      array('about', 'page', 'About page', "This is a demo page, this could be your personal about-page.\n\nLydia is used as a tool to educate in MVC frameworks.", 'plain', $this->user['id']));
+                      array('about', 'page', 'About page', "This is a demo page, this could be your personal about-page.\\n\\nLydia is used as a tool to educate in MVC frameworks.", 'plain', $this->user['id']));
           $this->db->ExecuteQuery(self::SQL('insert content'),
-                   array('download', 'page', 'Download page', "This is a demo page, this could be your personal download-page.\n\nYou can download your own copy of lydia from https://github.com/mosbth/lydia.", 'plain', $this->user['id']));
+                   array('download', 'page', 'Download page', "This is a demo page, this could be your personal download-page.\\n\\nYou can download your own copy of lydia from https:\/\/github.com\/mosbth\/lydia.", 'plain', $this->user['id']));
           $this->AddMessage('success', 'Successfully created the database tables and created a default "Hello World" blog post, owned by you.');
         } catch(Exception$e) {
           die("$e<br/>Failed to open database: " . $this->config['database'][0]['dsn']);
