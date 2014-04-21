@@ -80,6 +80,8 @@
                       array('about', 'page', 'About page', "This is a demo page, this could be your personal about-page.\n\nLydia is used as a tool to educate in MVC frameworks.", 'plain', $this->user['id']));
           $this->db->ExecuteQuery(self::SQL('insert content'),
                    array('download', 'page', 'Download page', "This is a demo page, this could be your personal download-page.\n\nYou can download your own copy of lydia from https://github.com/mosbth/lydia.", 'plain', $this->user['id']));
+          $this->db->ExecuteQuery(self::SQL('insert content'),
+                 array('htmlpurify', 'page', 'Page with HTMLPurifier', "This is a demo page with some HTML code intended to run through <a href='http://htmlpurifier.org/'>HTMLPurify</a>. Edit the source and insert HTML code and see if it works.\n\n<b>Text in bold</b> and <i>text in italic</i> and <a href='http://dbwebb.se'>a link to dbwebb.se</a>. JavaScript, like this: <javascript>alert('hej');</javascript> should however be removed.", 'htmlpurify', $this->user['id']));
           $this->AddMessage('success', 'Successfully created the database tables and created a default "Hello World" blog post, owned by you.');
         } catch(Exception$e) {
           die("$e<br/>Failed to open database: " . $this->config['database'][0]['dsn']);
@@ -157,6 +159,7 @@
        */
       public static function Filter($data, $filter) {
         switch($filter) {
+          case 'htmlpurify': $data = nl2br(CHTMLPurifier::Purify($data)); break;
           case 'bbcode': $data = nl2br(bbcode2html(htmlEnt($data))); break;
           case 'plain':
           default: $data = nl2br(make_clickable(htmlEnt($data))); break;
