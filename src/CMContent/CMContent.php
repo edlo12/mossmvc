@@ -157,8 +157,7 @@
        */
       public static function Filter($data, $filter) {
         switch($filter) {
-          case 'php': $data = nl2br(make_clickable(eval('?>'.$data))); break;
-          case 'html': $data = nl2br(make_clickable($data)); break; 
+          case 'bbcode': $data = nl2br(bbcode2html(htmlEnt($data))); break;
           case 'plain':
           default: $data = nl2br(make_clickable(htmlEnt($data))); break;
         }
